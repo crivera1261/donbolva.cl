@@ -1,0 +1,62 @@
+---
+import astroLogo from "../assets/astro.svg";
+import background from "../assets/donbolva_prices.jpg";
+---
+
+<main>
+  <div class="container">
+    <img id="background" src={background.src} alt="" fetchpriority="high" />
+  </div>
+</main>
+
+<footer>
+  <p id="legend">
+    <a href="mailto:hablemos@donbolva.cl">hablemos@donbolva.cl</a>
+    <br/>
+    <small
+      ><b>Donbolva.cl 2025</b></small>
+  </p>
+</footer>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #legend{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  #background {
+    /* position: fixed; */
+    display: flex;
+    align-items: center;
+    z-index: -1;
+    /*filter: blur(100px);*/
+    border: 10px solid black;
+    border-radius: 12px;
+    height: 85vh;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      background-color: lightgray;
+    }
+  }
+</style>
