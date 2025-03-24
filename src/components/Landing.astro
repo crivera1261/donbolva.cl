@@ -11,7 +11,7 @@ import background from "../assets/donbolva_prices.jpg";
 
 <footer>
   <p id="legend">
-    <a href="mailto:hablemos@donbolva.cl">hablemos@donbolva.cl</a>
+    <a href="mailto:hablemos@donbolva.cl" class="footer-link">hablemos@donbolva.cl</a>
     <br/>
     <small
       ><b>Donbolva.cl 2025</b></small>
@@ -23,6 +23,7 @@ import background from "../assets/donbolva_prices.jpg";
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #D9A132;
   }
   footer {
     position: fixed;
@@ -31,12 +32,29 @@ import background from "../assets/donbolva_prices.jpg";
     justify-content: center;
     align-items: center;
     display: flex;
+    background-color: #3c3418;
+    color: white;
+  }
+  .footer-link {
+    color: #FCFCFC;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-link:hover {
+      color: #fff;
   }
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .container > img{
+    /*margin: 12px 8px;*/
+    
+    height: 80%;
+
   }
   #legend{
     display: flex;
