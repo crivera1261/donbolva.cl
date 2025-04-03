@@ -1,65 +1,10 @@
 ---
-import astroLogo from "../assets/astro.svg";
+import { Image } from "astro:assets";
 import background from "../assets/donbolva_prices.jpg";
 ---
 
 <main>
-  <div class="container">
-    <img id="background" src={background.src} alt="" fetchpriority="high" />
+  <div class="flex justify-center items-center py-10 bg-gray-100">
+    <Image src={background} loading="lazy" alt="Precios" fetchpriority="high" loading="eager" />
   </div>
 </main>
-
-
-<style>
-  /* body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #D9A132;
-  }
-  footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    background-color: #3c3418;
-    color: white;
-  }
-  .footer-link {
-    color: #FCFCFC;
-    margin: 0 15px;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .footer-link:hover {
-      color: #fff;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  #legend{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  #background {
-    display: flex;
-    align-items: center;
-    z-index: -1;
-    border: 10px solid black;
-    border-radius: 12px;
-    height: 85vh;
-  }
-
-  @media (max-width: 768px) {
-    body {
-      background-color: lightgray;
-    }
-  } */
-</style>
