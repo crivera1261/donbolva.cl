@@ -16,7 +16,19 @@ import { Image } from "astro:assets";
       fetchpriority="high"
       loading="eager"
     />
-    <div class="flex flex-col flex-end max-w-[25%] absolute right-0 bottom-0">
+    <div class="flex items-left flex-col justify-center flex-start max-w-[40%] absolute min-h-[100%] ml-20">
+      <h2>
+        <b>¡Bienvenidos!</b>
+      </h2>
+      <p>
+        ¿Sabías que lo que comes impacta tanto en tu salud como en el planeta?
+        Nuestro huevos orgánicos son la elección perfecta para quiénes buscan
+        calidad, sabor y un estilo de vida más consciente. Producidos con amor y
+        cuidado nuevos huevos provienen de gallinas criadas en libertad,
+        alimentadas con una dieta 100% natural y libre de químicos.
+      </p>
+    </div>
+    <div class="flex flex-col flex-end max-w-[25%] absolute right-0 bottom-0 mr-25">
       <img
         src={"/home/landing_no_falten.png"}
         alt="absolute"
@@ -31,6 +43,16 @@ import { Image } from "astro:assets";
         loading="lazy"
         alt="Gallos"
         fetchpriority="low"
+        loading="eager"
+      />
+    </div>
+    <div class="flex flex-row flex-center min-w-[100%] max-h-[40%] absolute bottom-0">
+      <img
+        src={"/home/landing_grass.png"}
+        alt="absolute"
+        loading="lazy"
+        alt="Slogan"
+        fetchpriority="high"
         loading="eager"
       />
     </div>
