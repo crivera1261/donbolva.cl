@@ -1,10 +1,24 @@
 ---
 import { Image } from "astro:assets";
-import background from "../assets/donbolva_prices.jpg";
+import Egg from "@assets/home/landing_eggs.png";
+import Roosters from "@assets/home/landing_roosters.png";
+import Slogan from "@assets/home/landing_no_falten.png";
+import Grass from "@assets/home/landing_grass.png";
 ---
 
 <main>
-  <div class="flex justify-center items-center py-10 bg-gray-100">
+  <!-- <div class="flex justify-center items-center py-10 bg-white-100">
     <Image src={background} loading="lazy" alt="Precios" fetchpriority="high" loading="eager" />
+  </div> -->
+  <div class="bg-cover w-[80%] h-64">
+    <Image src={Egg} loading="lazy" alt="Lading huevos" fetchpriority="high" loading="eager" />
+  </div>
+  <div class="flex flex-direction-row justify-between">
+    <div class="bg-cover right-0 absolute w-[30%] h-32 mb-8">
+      <Image src={Slogan} loading="lazy" alt="Lading huevos" fetchpriority="high" loading="eager" />
+    </div>
+    <div class="bg-cover right-0 absolute w-[30%] h-32">
+      <Image src={Roosters} loading="lazy" alt="Lading huevos" fetchpriority="high" loading="eager" />
+    </div>
   </div>
 </main>
