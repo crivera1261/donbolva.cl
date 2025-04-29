@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import logo from "@assets/logo.png";
 import phone from "@assets/icons/whatsapp.svg";
 import mail from "@assets/icons/mail.svg";
+import map from "@assets/icons/map.svg";
 ---
 
 <div class="flex justify-between absolute z-12 w-[100%]" style="background-color:#FCFCFC">
@@ -77,6 +78,24 @@ import mail from "@assets/icons/mail.svg";
           fetchpriority="high"
         />
         <span><small>E-mail</small></span>
+      </a>
+    </div>
+    <div class="py-4 px-2">
+      <a
+        href="https://www.google.com/maps/place/-29.920903689398568, -71.23250890213036"
+        target="_blank"
+        class="flex flex-col justify-center items-center"
+        style="font-color: #432918"
+      >
+        <Image
+          width="20"
+          height="40"
+          src={map}
+          alt="mail"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <span><small>Visítanos</small></span>
       </a>
     </div>
   </div>
