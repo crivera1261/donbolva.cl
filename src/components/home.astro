@@ -3,26 +3,22 @@ import { Image } from "astro:assets";
 ---
 
 <main>
-  <!-- <div class="flex justify-center items-center py-10 bg-white-100">
-    <Image src={background} loading="lazy" alt="Precios" fetchpriority="high" loading="eager" />
-  </div> -->
-
   <div class="flex relative">
     <img
       src={"/home/landing_eggs.png"}
-      alt="absolute"
+      class="flex pt-30"
       loading="lazy"
-      alt="Huevo frito"
+      alt="Huevos"
       fetchpriority="high"
       loading="eager"
     />
-    <div class="flex items-left flex-col justify-center flex-start max-w-[40%] absolute min-h-[100%] ml-20">
-      <h2>
+    <div class="flex items-left flex-col justify-center flex-start max-w-[35%] absolute min-h-[100%] ml-50">
+      <h2 style="font-color: #432918">
         <b>¡Bienvenidos!</b>
       </h2>
-      <p>
+      <p style="font-color:#432918">
         ¿Sabías que lo que comes impacta tanto en tu salud como en el planeta?
-        Nuestro huevos orgánicos son la elección perfecta para quiénes buscan
+        Nuestros huevos orgánicos son la elección perfecta para quiénes buscan
         calidad, sabor y un estilo de vida más consciente. Producidos con amor y
         cuidado nuevos huevos provienen de gallinas criadas en libertad,
         alimentadas con una dieta 100% natural y libre de químicos.
