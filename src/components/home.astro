@@ -12,7 +12,7 @@ import { Image } from "astro:assets";
       fetchpriority="high"
       loading="eager"
     />
-    <div class="flex items-left flex-col justify-center flex-start max-w-[35%] absolute min-h-[100%] ml-50">
+    <div class="flex items-left flex-col justify-center flex-start absolute  md:max-w-[35%] min-h-[100%] md:ml-50 sm:max-w-[100%] text-[8px] md:text-xl px-6 sm:px-0">
       <h2 style="font-color: #432918">
         <b>¡Bienvenidos!</b>
       </h2>
@@ -27,7 +27,6 @@ import { Image } from "astro:assets";
     <div class="flex flex-col flex-end max-w-[25%] absolute right-0 bottom-0 mr-25">
       <img
         src={"/home/landing_no_falten.png"}
-        alt="absolute"
         loading="lazy"
         alt="Slogan"
         fetchpriority="high"
@@ -35,17 +34,15 @@ import { Image } from "astro:assets";
       />
       <img
         src={"/home/landing_roosters.png"}
-        alt="absolute"
         loading="lazy"
         alt="Gallos"
-        fetchpriority="low"
+        fetchpriority="high"
         loading="eager"
       />
     </div>
     <div class="flex flex-row flex-center min-w-[100%] max-h-[40%] absolute bottom-0">
       <img
         src={"/home/landing_grass.png"}
-        alt="absolute"
         loading="lazy"
         alt="Slogan"
         fetchpriority="high"
