@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
   <div class="flex relative">
     <img
       src={"/home/landing_eggs.png"}
-      class="flex pt-30"
+      class="flex pt-30 w-[100%]"
       loading="lazy"
       alt="Huevos"
       fetchpriority="high"
@@ -43,7 +43,7 @@ import { Image } from "astro:assets";
     <div class="flex flex-row flex-center min-w-[100%] max-h-[40%] absolute bottom-0">
       <img
         src={"/home/landing_grass.png"}
-        loading="lazy"
+        loading="lazy min-w-[100%] max-h-[50%]"
         alt="Slogan"
         fetchpriority="high"
         loading="eager"
