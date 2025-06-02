@@ -1,0 +1,50 @@
+[
+    {
+        "id":"SSEC",
+        "item":"Bandeja Super super extra color",
+        "price": 13800,
+        "available" : true
+    },
+    {
+        "id":"SSEB",
+        "item":"Bandeja Super super extra blanco",
+        "price": 13800,
+        "available" : true
+    },
+    {
+        "id":"SEC",
+        "item":"Bandeja Super extra color",
+        "price": 11400,
+        "available" : true
+    },
+    {
+        "id":"SEB",
+        "item":"Bandeja Super extra blanco",
+        "price": 11000,
+        "available" : true
+    },
+    {
+        "id":"EC",
+        "item":"Bandeja Extra color",
+        "price": 8900,
+        "available" : true
+    },
+    {
+        "id":"EB",
+        "item":"Bandeja Extra blanco",
+        "price": 8500,
+        "available" : true
+    },
+    {
+        "id":"PC",
+        "item":"Bandeja Primera color",
+        "price": 7800,
+        "available" : true
+    },
+    {
+        "id":"PB",
+        "item":"Bandeja Primera blanco",
+        "price": 7500,
+        "available" : true
+    }    
+]

@@ -1,0 +1,176 @@
+---
+import Products from "./../data/products.json";
+// Icons
+import UserIcon from "./../assets/icons/user.svg";
+import PhoneIcon from "./../assets/icons/phone.svg";
+import MailIcon from "./../assets/icons/mail.svg";
+---
+
+<main>
+  <div class="flex relative">
+    <img
+      src={"/home/landing_eggs.png"}
+      class="flex pt-30 w-[100%]"
+      loading="lazy"
+      alt="Huevos"
+      fetchpriority="high"
+      loading="eager"
+    />
+    <div
+      class="flex flex-col justify-center flex-start ml-2 absolute md:max-w-[35%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-[8px] md:text-xl px-6 sm:px-0"
+    >
+      <div class="flex items-center justify-center">
+        <h2 style="color: #432918">
+          <b class="text-2xl">
+            Hoy es un gran día <br />
+            <span style="color:red">para disfrutar</span>
+          </b>
+        </h2>
+      </div>
+      <img
+        src={"/home/landing_roosters.png"}
+        loading="lazy"
+        alt="Gallos"
+        fetchpriority="high"
+        loading="eager"
+      />
+    </div>
+    <div
+      class="flex flex-col max-w-[25%] absolute right-0 bottom-0 mr-25 max-w-xl mx-auto bg-white p-6 rounded shadow-md space-y-4"
+    >
+      <form
+        id="contact"
+        action="/gracias"
+        method="POST"
+        class="space-y-4"
+        style="color: #432918"
+      >
+        <label class="w-1/3">Nombre</label>
+        <div
+          class="flex items-center border border-gray-300 rounded-xl px-3 py-2 shadow-sm bg-white"
+        >
+          <div
+            class="inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+          >
+            <img
+              src={UserIcon.src}
+              alt="Mail icon"
+              class="h-5 w-5 text-gray-400"
+            />
+          </div>
+          <input
+            type="text"
+            name="query"
+            placeholder="Nombre y apellidos"
+            class="ml-2 w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
+          />
+        </div>
+        <label class="w-1/3">Correo</label>
+        <div
+          class="flex items-center border border-gray-300 rounded-xl px-3 py-2 shadow-sm bg-white"
+        >
+          <div
+            class="inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+          >
+            <img
+              src={MailIcon.src}
+              alt="Mail icon"
+              class="h-5 w-5 text-gray-400"
+            />
+          </div>
+          <input
+            type="email"
+            name="Correo"
+            placeholder="Tu correo"
+            class="ml-2 w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
+            required
+          />
+        </div>
+        <label class="w-1/3">Teléfono</label>
+        <div
+          class="flex items-center border border-gray-300 rounded-xl px-3 py-2 shadow-sm bg-white"
+        >
+          <div
+            class="inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+          >
+            <img
+              src={PhoneIcon.src}
+              alt="Mail icon"
+              class="h-5 w-5 text-gray-400"
+            />
+          </div>
+          <input
+            type="tel"
+            id="phone"
+            name="Telefono"
+            placeholder="+56912345678"
+            pattern="^\+569\d{8}$"
+            class="ml-2 w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
+            required
+          />
+          <p id="phoneError" class="text-red-500 text-sm mt-1 hidden">
+            Número no válido. Use el formato +56912345678
+          </p>
+        </div>
+
+        <div class="space-y-3" id="products">
+          <h2 class="text-xl font-semibold mt-4">Cantidad por bandeja</h2>
+          {
+            Products.map((a, index) => (
+              <div class="flex items-center gap-4">
+                <label class="w-3/5">{a.item}</label>
+                <label class="w-1/5">${a.price}</label>
+                <input
+                  type="number"
+                  name={`cantidad[${a.id}]`}
+                  placeholder="0"
+                  min="0"
+                  class="w-1/3 border px-2 py-1 rounded"
+                  disabled={`[{a.available}]`}
+                />
+              </div>
+            ))
+          }
+        </div>
+
+        <input
+          type="checkbox"
+          id="toggle"
+          name="acepto"
+          class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+        /> ¿Tienes un emprendimiento o empresa? consulta precios por mayor.
+
+        <button
+          type="submit"
+          class="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded w-full"
+        >
+          Enviar pedido
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector("#toggle");
+    const panel = document.querySelector("#products");
+
+    btn.addEventListener("click", () => {
+      panel.classList.toggle("hidden");
+    });
+  });
+
+  document.getElementById('contact').addEventListener('submit', function (e) {
+    const phone = document.getElementById('phone');
+    const phoneError = document.getElementById('phoneError');
+    const regex = /^\+569\d{8}$/;
+
+    if (!regex.test(phone.value.trim())) {
+      e.preventDefault();
+      phoneError.classList.remove('hidden');
+    } else {
+      phoneError.classList.add('hidden');
+    }
+  });
+</script>
