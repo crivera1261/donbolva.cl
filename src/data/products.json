@@ -1,50 +1,50 @@
 [
     {
-        "id":"SSEC",
+        "id":"BANDEJA-SSEC",
         "item":"Bandeja Super super extra color",
         "price": 13800,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"SSEB",
+        "id":"BANDEJA-SSEB",
         "item":"Bandeja Super super extra blanco",
         "price": 13800,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"SEC",
+        "id":"BANDEJA-SEC",
         "item":"Bandeja Super extra color",
         "price": 11400,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"SEB",
+        "id":"BANDEJA-SEB",
         "item":"Bandeja Super extra blanco",
         "price": 11000,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"EC",
+        "id":"BANDEJA-EC",
         "item":"Bandeja Extra color",
         "price": 8900,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"EB",
+        "id":"BANDEJA-EB",
         "item":"Bandeja Extra blanco",
         "price": 8500,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"PC",
+        "id":"BANDEJA-PC",
         "item":"Bandeja Primera color",
         "price": 7800,
-        "available" : true
+        "active" : true
     },
     {
-        "id":"PB",
+        "id":"BANDEJA-PB",
         "item":"Bandeja Primera blanco",
         "price": 7500,
-        "available" : true
+        "active" : true
     }    
 ]
