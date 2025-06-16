@@ -1,0 +1,11 @@
+# robots.txt para https://donbolva.cl/
+
+User-agent: *
+Allow: /
+
+# Bloquear carpetas que no necesitas indexar (si las tienes)
+Disallow: /contact/
+Disallow: /node_modules/
+
+# Sitemap (importante para SEO)
+Sitemap: https://donbolva.cl/sitemap.xml

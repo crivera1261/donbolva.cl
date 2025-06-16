@@ -1,27 +1,53 @@
 ---
-import Header from '@components/common/header.astro';
-import Footer from '@components/common/footer.astro';
+import Header from "@components/common/header.astro";
+import Footer from "@components/common/footer.astro";
+const title =
+  "Venta de huevos al por mayor y menorr | Distribuidora DON BOLVA SPA";
+const description =
+  "Compra huevos frescos al por mayor. Huevos Organicos. Calidad garantizada, entrega rápida. Contacta con nosotros para obtener la mejor oferta.";
+const keywords =
+  "huevos al por mayor, venta de huevos, huevos frescos, distribución de huevos, huevos La Serena, Coquimbo, Ovalle.";
+const author = "DISTRIBUIDORA DON BOLVA SPA";
 ---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-		<title>Distribuidora DonBolva</title>
-</head>
-	<Header class="font-sans flex absolute z-10 bg-white top-0 w-[100%]" />
-	<body class="font-sans">
-		<slot />
-	</body>
-	<!-- <Footer class="font-sans"/> -->
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <!-- Open Graph para Facebook / LinkedIn -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/logo.png" />
+    <meta property="og:url" content="https://tusitio.cl/" />
 
-<style>
-	/* html,
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/images/logo.png" />
+  </head>
+  <Header class="font-sans flex absolute z-10 bg-white top-0 w-[100%]" />
+  <body class="font-sans">
+    <slot />
+  </body>
+  <!-- <Footer class="font-sans"/> -->
+
+
+  <style>
+    /* html,
 	body {
 		margin: 0;
 		width: 100%;
@@ -29,4 +55,5 @@ import Footer from '@components/common/footer.astro';
 		display: flex;
 		flex-direction: column;
 	} */
-</style>
+  </style>
+</html>
