@@ -6,9 +6,12 @@ import mail from "@assets/icons/mailPlus.svg";
 import map from "@assets/icons/map.svg";
 ---
 
-<div class="flex justify-between absolute z-12 w-[100%]" style="background-color:#FCFCFC">
+<header
+  class="flex justify-between absolute w-[100%]"
+  style="background-color:#FCFCFC"
+>
   <!-- logo -->
-  <div class="flex md:py-4 md:px-8 md:ml-50">
+  <div class="flex md:py-2 md:px-4 md:ml-50">
     <a href="/">
       <Image
         alt="logo"
@@ -22,22 +25,24 @@ import map from "@assets/icons/map.svg";
     </a>
   </div>
   <!-- Acciones -->
-  <div class="flex md:py-8 md:px-2 w-min-7 justify-evenly md:mr-25">
-    <div class="md:py-4 md:px-2 md:mr-6 justify-center items-center hidden sm:flex">
-      <span style="font-color: #432918"> Hablemos en</span>
+  <div class="flex md:py-8 md:px-2 justify-evenly md:mr-25">
+    <div
+      class="md:py-4 md:px-2 md:mr-6 justify-center items-center hidden sm:flex"
+    >
+      <span style="color: #432918">Hablemos en</span>
     </div>
     <div class="py-4 px-2">
       <a
         href="https://wa.me/56989010231?text=Hola!%20me%20puedes%20entregar%20más%20información%20sobre%20la%20venta%20de%20huevos."
         target="_blank"
         class="flex flex-col justify-center items-center"
-        style="font-color: #432918"
+        style="color: #432918"
       >
         <Image
           src={phone}
           alt="fono"
-          width="20"
-          height="40"
+          width={20}
+          height={40}
           loading="eager"
           fetchpriority="high"
         />
@@ -49,13 +54,13 @@ import map from "@assets/icons/map.svg";
         href="https://wa.me/56933286948?text=Hola!%20me%20puedes%20entregar%20más%20información%20sobre%20la%20venta%20de%20huevos."
         target="_blank"
         class="flex flex-col justify-center items-center"
-        style="font-color: #432918"
+        style="color: #432918"
       >
         <Image
           src={phone}
           alt="fono"
-          width="20"
-          height="40"
+          width={20}
+          height={40}
           loading="eager"
           fetchpriority="high"
         />
@@ -70,8 +75,8 @@ import map from "@assets/icons/map.svg";
         style="font-color: #432918"
       >
         <Image
-          width="20"
-          height="40"
+          width={20}
+          height={40}
           src={mail}
           alt="mail"
           loading="eager"
@@ -88,8 +93,8 @@ import map from "@assets/icons/map.svg";
         style="font-color: #432918"
       >
         <Image
-          width="20"
-          height="40"
+          width={20}
+          height={40}
           src={map}
           alt="mail"
           loading="eager"
@@ -99,4 +104,4 @@ import map from "@assets/icons/map.svg";
       </a>
     </div>
   </div>
-</div>
+</header>
