@@ -93,6 +93,7 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
             style={{ color: '#432918' }}
             onSubmit={handleSubmit}
         >
+            <h1 className="text-4xl font-semibold">¡Haz tu pedido hoy!</h1>
             <label className="w-1/3">Nombre</label>
             <div
                 className="flex items-center border border-gray-300 rounded-xl px-3 py-2 shadow-sm bg-white"
@@ -166,7 +167,6 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                     Número no válido. Use el formato +56912345678
                 </p>
             </div>
-
             <div className="space-y-3" id="products">
                 <h2 className="text-xl font-semibold mt-4">Cantidad por bandeja</h2>
                 {
@@ -188,18 +188,17 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                         </div>
                     ))
                 }
-                <p className='text-center'>
+                <p className='text-center text-red-600'>
                     <b>¡IMPORTANTE! Stock sujeto a disponibilidad</b>
                 </p>
             </div>
-
             <input
                 type="checkbox"
                 id="toggle"
                 name="acepto"
                 className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                 onChange={handleChange}
-            /> {" ¿Tienes un emprendimiento o empresa? consulta precios por mayor."}
+            /> {" ¿Tienes un emprendimiento o empresa? Te enviaremos precios por mayor."}
 
             {!isLoading && (
                 <button
