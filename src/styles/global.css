@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+ @theme {
+      --color-primary: #432918; /* RGB values for red */
+      --color-secondary: #432918; /* RGB values for blue */
+      --color-custom-green: #432918; /* RGB values for a specific green */
+    }
