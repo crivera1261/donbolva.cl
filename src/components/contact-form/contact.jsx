@@ -171,9 +171,9 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                 <h2 className="text-xl font-semibold mt-4">Cantidad por bandeja</h2>
                 {
                     Products.map((a, index) => (
-                        <div className="flex items-center gap-4" key={a.id}>
-                            <label className="w-3/5">{a.item}</label>
-                            <label className="w-1/5">${a.price}</label>
+                        <div className="flex items-center gap-4" key={a.id} title={a.active ? "Stock sujeto a disponibilidad" : "Lo sentimos, sin stock por el momento."}>
+                            <label className={`w-3/5 ${a.active ? 'text-black' : 'text-gray-400'}`}>{a.item}</label>
+                            <label className={`w-1/5 ${a.active ? 'text-black' : 'text-gray-400'}`}>${a.price}</label>
                             <input
                                 type="number"
                                 name={`${a.id}`}
@@ -181,11 +181,16 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                                 min="0"
                                 max="20"
                                 onChange={handleChange}
-                                className="ml-2 w-1/3 border bg-transparent rounded px-2 py-1 outline-none text-gray-700 placeholder-gray-400"
+                                disabled={!a.active}
+                                className={`ml-2 w-1/3 border bg-transparent rounded px-2 py-1 outline-none placeholder-gray-400 
+                                    ${a.active ? 'text-black' : 'text-gray-400'}`}
                             />
                         </div>
                     ))
                 }
+                <p className='text-center'>
+                    <b>¡IMPORTANTE! Stock sujeto a disponibilidad</b>
+                </p>
             </div>
 
             <input
