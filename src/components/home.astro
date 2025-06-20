@@ -1,58 +1,64 @@
 ---
-import landingEggs from './../../public/home/landing_eggs.png';
-import landingNoFalten from './../../public/home/landing_no_falten.png';
-import landingRoosters from './../../public/home/landing_roosters.png';
-import landingGrass from './../../public/home/landing_grass.png';
+import landingEggs from "./../../public/home/landing_eggs.png";
+import landingNoFalten from "./../../public/home/landing_no_falten.png";
+import landingRoosters from "./../../public/home/landing_roosters.png";
+import landingGrass from "./../../public/home/landing_grass.png";
 import { Image } from "astro:assets";
 ---
 
-<main>
-  <div class="flex relative">
+<main class="flex relative min-h-[70dvh]">
+  <Image
+    src={landingEggs}
+    class="min-w-[100%]"
+    alt="Huevos"
+    fetchpriority="high"
+    loading="eager"
+  />
+  <!-- Seccion izquierda -->
+  <div
+    class="flex flex-col justify-center absolute md:max-w-[35%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-[8px] md:text-xl px-6 sm:px-0"
+  >
+    <h2 class="text-[#432918]">
+      <b>¡Bienvenidos!</b>
+    </h2>
+    <p class="text-[#432918]">
+      ¿Sabías que lo que comes impacta tanto en tu salud como en el planeta?
+      Nuestros huevos orgánicos son la elección perfecta para quiénes buscan
+      calidad, sabor y un estilo de vida más consciente. Producidos con amor y
+      cuidado, nuestros huevos provienen de gallinas criadas en libertad,
+      alimentadas con una dieta 100% natural y libre de químicos.
+    </p>
+    <a href="/contact">
+      <button
+        class="mt-4 w-1/4 md:w-1/2  text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 bg-[#432918] hover:bg-[#432918]-700 cursor-pointer"
+      >
+        Haz tu pedido
+      </button>
+    </a>
+  </div>
+  <!-- Seccion derecha -->
+  <div
+    class="flex flex-col md:flex-end max-w-[25%] absolute right-0 bottom-0 mr-25"
+  >
     <Image
-      src={landingEggs}
-      class="flex pt-30 w-[100%]"
-      alt="Huevos"
+      src={landingNoFalten}
+      alt="Slogan"
       fetchpriority="high"
       loading="eager"
     />
-    <div class="flex flex-col justify-center flex-start absolute  md:max-w-[35%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-[8px] md:text-xl px-6 sm:px-0">
-      <h2 style="color: #432918">
-        <b>¡Bienvenidos!</b>
-      </h2>
-      <p style="color:#432918">
-        ¿Sabías que lo que comes impacta tanto en tu salud como en el planeta?
-        Nuestros huevos orgánicos son la elección perfecta para quiénes buscan
-        calidad, sabor y un estilo de vida más consciente. Producidos con amor y
-        cuidado, nuestros huevos provienen de gallinas criadas en libertad,
-        alimentadas con una dieta 100% natural y libre de químicos.
-      </p>
-      <a href="/contact">
-        <button style="background-color:#432918;cursor:pointer" class="mt-4 w-1/4 md:w-1/2 bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300">
-          Haz tu pedido
-        </button>
-      </a>
-    </div>
-    <div class="flex flex-col flex-end max-w-[25%] absolute right-0 bottom-0 mr-25">
-      <Image
-        src={landingNoFalten}
-        alt="Slogan"
-        fetchpriority="high"
-        loading="eager"
-      />
-      <Image
-        src={landingRoosters}
-        alt="Gallos"
-        fetchpriority="high"
-        loading="eager"
-      />
-    </div>
-    <div class="flex flex-row flex-center min-w-[100%] max-h-[40%] absolute bottom-0">
-      <Image
-        src={landingGrass}
-        alt="Slogan"
-        fetchpriority="high"
-        loading="eager"
-      />
-    </div>
+    <Image
+      src={landingRoosters}
+      alt="Gallos"
+      fetchpriority="high"
+      loading="eager"
+    />
+  </div>
+  <div class="flex flex-row min-w-[100%] max-h-[40%] absolute bottom-0">
+    <Image
+      src={landingGrass}
+      alt="Slogan"
+      fetchpriority="high"
+      loading="eager"
+    />
   </div>
 </main>
