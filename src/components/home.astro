@@ -1,13 +1,16 @@
 ---
+import landingEggs from './../../public/home/landing_eggs.png';
+import landingNoFalten from './../../public/home/landing_no_falten.png';
+import landingRoosters from './../../public/home/landing_roosters.png';
+import landingGrass from './../../public/home/landing_grass.png';
 import { Image } from "astro:assets";
 ---
 
 <main>
   <div class="flex relative">
-    <img
-      src={"/home/landing_eggs.png"}
+    <Image
+      src={landingEggs}
       class="flex pt-30 w-[100%]"
-      loading="lazy"
       alt="Huevos"
       fetchpriority="high"
       loading="eager"
@@ -30,25 +33,22 @@ import { Image } from "astro:assets";
       </a>
     </div>
     <div class="flex flex-col flex-end max-w-[25%] absolute right-0 bottom-0 mr-25">
-      <img
-        src={"/home/landing_no_falten.png"}
-        loading="lazy"
+      <Image
+        src={landingNoFalten}
         alt="Slogan"
         fetchpriority="high"
         loading="eager"
       />
-      <img
-        src={"/home/landing_roosters.png"}
-        loading="lazy"
+      <Image
+        src={landingRoosters}
         alt="Gallos"
         fetchpriority="high"
         loading="eager"
       />
     </div>
     <div class="flex flex-row flex-center min-w-[100%] max-h-[40%] absolute bottom-0">
-      <img
-        src={"/home/landing_grass.png"}
-        loading="lazy min-w-[100%] max-h-[50%]"
+      <Image
+        src={landingGrass}
         alt="Slogan"
         fetchpriority="high"
         loading="eager"
