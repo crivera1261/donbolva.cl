@@ -9,14 +9,14 @@ import { Image } from "astro:assets";
 <main class="flex relative min-h-[70dvh]">
   <Image
     src={landingEggs}
-    class="min-w-[100%]"
+    class="max-h-[80%] md:max-h-[100%] md:min-w-[100%]"
     alt="Huevos"
     fetchpriority="high"
     loading="eager"
   />
   <!-- Seccion izquierda -->
   <div
-    class="flex flex-col justify-center absolute md:max-w-[35%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-[8px] md:text-xl px-6 sm:px-0"
+    class="flex flex-col md:justify-center absolute md:max-w-[35%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-xl md: text-xl md:text-xl px-6 sm:px-0"
   >
     <h2 class="text-[#432918]">
       <b>¡Bienvenidos!</b>
@@ -30,7 +30,7 @@ import { Image } from "astro:assets";
     </p>
     <a href="/contact">
       <button
-        class="mt-4 w-1/4 md:w-1/2  text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 bg-[#432918] hover:bg-[#432918]-700 cursor-pointer"
+        class="mt-4 w-1/2 md:w-1/2 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 bg-[#432918] hover:bg-[#432918]-700 cursor-pointer"
       >
         Haz tu pedido
       </button>
@@ -38,7 +38,7 @@ import { Image } from "astro:assets";
   </div>
   <!-- Seccion derecha -->
   <div
-    class="flex flex-col md:flex-end max-w-[25%] absolute right-0 bottom-0 mr-25"
+    class="flex flex-col md:flex-end max-w-[40%] md:max-w-[25%] absolute right-0 bottom-0 mr-25"
   >
     <Image
       src={landingNoFalten}
@@ -53,7 +53,7 @@ import { Image } from "astro:assets";
       loading="eager"
     />
   </div>
-  <div class="flex flex-row min-w-[100%] max-h-[40%] absolute bottom-0">
+  <div class="flex flex-row min-w-[100%] max-h-[40%] absolute bottom-0 justify-center">
     <Image
       src={landingGrass}
       alt="Slogan"
