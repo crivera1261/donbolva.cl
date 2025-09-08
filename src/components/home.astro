@@ -5,13 +5,13 @@ import arrowDown from "@assets/icons/down-arrow.svg";
 import { Image } from "astro:assets";
 ---
 
-<main class="flex relative min-h-[70dvh]">
+<main class="flex min-h-[70dvh] flex-col sm:space-between md:flex-row">
    <!-- Seccion izquierda -->
   <div
-    class="flex flex-col md:justify-center absolute md:max-w-[50%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-xl px-6 sm:px-0"
+    class="flex flex-col md:justify-center md:min-w-[60%] min-h-[100%] sm:max-w-[100%] text-xl px-6 sm:px-0 ml-4"
   >
     <!-- Encabezado -->
-      <header class="text-left mb-8 pl-5">
+      <header class="text-left mt-20 mb-8 pl-5">
         <h1 class="text-7xl text-left font-extrabold text-red-600 tracking-wider">¡Hoola!</h1>
         <p class="text-lg mt-2 bg-black text-white inline-block px-4 py-2 rounded-md ml-8">#quenotefaltenhuevos</p>
       </header>
@@ -40,7 +40,7 @@ import { Image } from "astro:assets";
       </div>
 
       <!-- Tarjetas de productos -->
-      <div class="bg-[#432917] p-6 rounded-xl shadow-lg mb-8">
+      <div class="bg-[#432917] p-6 rounded-xl shadow-lg ">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           {[
             {
@@ -89,14 +89,14 @@ import { Image } from "astro:assets";
       </div>
 
       <!-- Notas importantes -->
-      <div class="text-left text-sm text-gray-600 mb-6">
+      <div class="text-left text-sm text-gray-600 mt-4">
         <p class="text-xs"><strong>*Todos los huevos que comercializamos son orgánicos, sin preservantes.</strong></p>
         <p class="text-xs"><strong>*Su duración máxima es de 45 días.</strong></p>
       </div>
   </div>
   <!-- Seccion derecha -->
   <div
-    class="flex flex-col md:flex-end max-w-[50%] md:max-w-[50%] absolute right-0 bottom-0 mr-25"
+    class="flex flex-col mt-25"
   >
     <div class="text-center py-12 px-4">
   <!-- Título principal -->
