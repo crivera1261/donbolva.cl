@@ -70,11 +70,11 @@ import { Image } from "astro:assets";
             }
           ].map((item) => (
             <div class="flex flex-col justify-between bg-[#c99e67] p-2 rounded-lg border shadow-sm transition-transform hover:scale-105">
-              <div class="py-1">
-                <h5 class="font-extrabold text-md text-[#432917]">{item.tipo}</h5>
+              <div class="py-1 h-5 flex-col">
+                <h5 class="font-extrabold text-sm text-[#432917]">{item.tipo}</h5>
               </div>
-              <div class="mt-1 py-2">
-                <ul class="text-xs text-[#432917] space-y-1 min-h-20">
+              <div class="py-2">
+                <ul class="text-xs text-[#432917] space-y-1">
                   {item.unidades.map((u) => (
                     <li>{u} Unidades</li>
                   ))}
@@ -96,7 +96,7 @@ import { Image } from "astro:assets";
   </div>
   <!-- Seccion derecha -->
   <div
-    class="flex flex-col md:space-between mt-25 md:min-h-[100%] md:ml-5 md:mr-5"
+    class="flex flex-col md:space-between md:pt-40 md:min-h-[100%] md:ml-5 md:mr-5"
   >
     <div class="text-center py-12 px-4">
   <!-- Título principal -->
@@ -130,7 +130,7 @@ import { Image } from "astro:assets";
   </a>
 
   <!-- Texto informativo -->
-  <p class="mt-20 text-xs text-gray-800 text-center max-w-xl mx-auto">
+  <p class="mt-20 text-xs text-gray-800 font-bold text-center max-w-xl mx-auto">
     En Don Bolva Distribuidora ponemos nuestros esfuerzos en fomentar la reutilización <br/> por ello invitamos a nuestros clientes a traer sus bandejas en sus próximas compras.
   </p>
   </div>
