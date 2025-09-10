@@ -12,12 +12,12 @@ import { Image } from "astro:assets";
   >
     <!-- Encabezado -->
       <header class="text-left mt-20 mb-8 pl-5">
-        <h1 class="text-7xl text-left font-extrabold text-red-600 tracking-wider">¡Hoola!</h1>
+        <h1 class="text-7xl text-left font-extrabold text-[#E20613] tracking-wider">¡Hoola!</h1>
         <p class="text-lg mt-2 bg-black text-white inline-block px-4 py-2 rounded-md ml-8">#quenotefaltenhuevos</p>
       </header>
 
       <!-- Título de sección -->
-      <div class="flex justify-left pl-5 items-center gap-6 mb-6 text-amber-900 text-xl font-semibold">
+      <div class="flex justify-left pl-5 items-center gap-6 mb-6 text-[#683b11] text-xl font-semibold">
         <span class="font-extrabold">Tipo</span>
         <Image
           src={egg}
@@ -69,9 +69,9 @@ import { Image } from "astro:assets";
               unidades: ['180', '30', '20', '12', '6']
             }
           ].map((item) => (
-            <div class="flex flex-col justify-between bg-[#c99e67] p-4 rounded-lg border border-amber-400 shadow-sm transition-transform hover:scale-105">
+            <div class="flex flex-col justify-between bg-[#c99e67] p-2 rounded-lg border shadow-sm transition-transform hover:scale-105">
               <div class="py-1">
-                <h5 class="font-extrabold text-sm text-[#432917]">{item.tipo}</h5>
+                <h5 class="font-extrabold text-md text-[#432917]">{item.tipo}</h5>
               </div>
               <div class="mt-1 py-2">
                 <ul class="text-xs text-[#432917] space-y-1 min-h-20">
@@ -102,10 +102,10 @@ import { Image } from "astro:assets";
   <!-- Título principal -->
   <h2 class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">
     <span class="text-black">Hoy es un</span>
-    <span class="text-red-600"> buen momento</span>
+    <span class="text-[#E20613]"> buen momento</span>
     <br />
     <span class="text-black">para disfrutar un</span>
-    <span class="text-amber-900"> buen huevo</span>
+    <span class="text-[#683B11]"> buen huevo</span>
   </h2>
 
   <!-- Flecha hacia abajo -->
