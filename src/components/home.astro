@@ -1,64 +1,137 @@
 ---
-import landingEggs from "./../../public/home/landing_eggs.png";
-import landingNoFalten from "./../../public/home/landing_no_falten.png";
-import landingRoosters from "./../../public/home/landing_roosters.png";
-import landingGrass from "./../../public/home/landing_grass.png";
+import egg from "@assets/icons/egg.svg";
+import nestEgg from "@assets/icons/nest-egg.svg";
+import arrowDown from "@assets/icons/down-arrow.svg";
 import { Image } from "astro:assets";
 ---
 
-<main class="flex relative min-h-[70dvh]">
-  <Image
-    src={landingEggs}
-    class="max-h-[80%] md:max-h-[100%] md:min-w-[100%]"
-    alt="Uno de nuestros huevos fritos, exquisita preparación"
-    fetchpriority="high"
-    loading="eager"
-  />
-  <!-- Seccion izquierda -->
+<main class="flex min-h-[70dvh] flex-col sm:space-between md:flex-row">
+   <!-- Seccion izquierda -->
   <div
-    class="flex flex-col md:justify-center absolute md:max-w-[35%] min-h-[100%] md:ml-12 sm:max-w-[100%] text-xl px-6 sm:px-0"
+    class="flex flex-col md:justify-center md:min-w-[60%] min-h-[100%] sm:max-w-[100%] text-xl px-6 sm:px-0 ml-4"
   >
-    <h1 class="text-primary">
-      <b>¡Bienvenidos!</b>
-    </h1>
-    <p class="text-primary">
-      ¿Sabías que lo que comes impacta tanto en tu salud como en el planeta?
-      Nuestros huevos orgánicos son la elección perfecta para quiénes buscan
-      calidad, sabor y un estilo de vida más consciente. Producidos con amor y
-      cuidado, nuestros huevos provienen de gallinas criadas en libertad,
-      alimentadas con una dieta 100% natural y libre de químicos.
-    </p>
-    <a href="/contact">
-      <button
-        class="mt-4 w-1/2 md:w-1/2 text-white font-bold py-2 px-4 rounded shadow-lg transition duration-300 bg-primary hover:bg-primary/80 cursor-pointer"
-      >
-        Haz tu pedido
-      </button>
-    </a>
+    <!-- Encabezado -->
+      <header class="text-left mt-20 mb-8 pl-5">
+        <h1 class="text-7xl text-left font-extrabold text-[#E20613] tracking-wider">¡Hoola!</h1>
+        <p class="text-lg mt-2 bg-black text-white inline-block px-4 py-2 rounded-md ml-8">#quenotefaltenhuevos</p>
+      </header>
+
+      <!-- Título de sección -->
+      <div class="flex justify-left pl-5 items-center gap-6 mb-6 text-[#683b11] text-xl font-semibold">
+        <span class="font-extrabold">Tipo</span>
+        <Image
+          src={egg}
+          width={20}
+          height={40}
+          alt="huevo"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <span class="font-extrabold">Formato</span>
+        <Image
+          src={nestEgg}
+          width={40}
+          height={40}
+          alt="bandeja huevos"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <span class="text-xs">COLOR / BLANCO</span>
+      </div>
+
+      <!-- Tarjetas de productos -->
+      <div class="bg-[#432917] p-6 rounded-xl shadow-lg ">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+          {[
+            {
+              tipo: 'Super super extra',
+              peso: '73-105 grs.',
+              unidades: ['180', '30', '20', '12', '6']
+            },
+            {
+              tipo: 'Super extra',
+              peso: '61-68 grs.',
+              unidades: ['180', '30', '20', '12', '6']
+            },
+            {
+              tipo: 'Extra',
+              peso: '54-61 grs.',
+              unidades: ['180', '30', '20', '12', '6']
+            },
+            {
+              tipo: 'Primera',
+              peso: '47-54 grs.',
+              unidades: ['180', '30', '20', '12', '6']
+            },
+            {
+              tipo: 'Segunda',
+              peso: '40-47 grs.',
+              unidades: ['180', '30', '20', '12', '6']
+            }
+          ].map((item) => (
+            <div class="flex flex-col justify-between bg-[#c99e67] p-2 rounded-lg border shadow-sm transition-transform hover:scale-105">
+              <div class="py-1">
+                <h5 class="font-extrabold text-md text-[#432917]">{item.tipo}</h5>
+              </div>
+              <div class="mt-1 py-2">
+                <ul class="text-xs text-[#432917] space-y-1 min-h-20">
+                  {item.unidades.map((u) => (
+                    <li>{u} Unidades</li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mt-3 bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded">
+                Peso unitario<br /><span class="text-sm font-bold">{item.peso}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Notas importantes -->
+      <div class="text-left text-sm text-gray-600 mt-4">
+        <p class="text-xs"><strong>*Todos los huevos que comercializamos son orgánicos, sin preservantes.</strong></p>
+        <p class="text-xs"><strong>*Su duración máxima es de 45 días.</strong></p>
+      </div>
   </div>
   <!-- Seccion derecha -->
   <div
-    class="flex flex-col md:flex-end max-w-[40%] md:max-w-[25%] absolute right-0 bottom-0 mr-25"
+    class="flex flex-col mt-25"
   >
+    <div class="text-center py-12 px-4">
+  <!-- Título principal -->
+  <h2 class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">
+    <span class="text-black">Hoy es un</span>
+    <span class="text-[#E20613]"> buen momento</span>
+    <br />
+    <span class="text-black">para disfrutar un</span>
+    <span class="text-[#683B11]"> buen huevo</span>
+  </h2>
+
+  <!-- Flecha hacia abajo -->
+  <div class="flex justify-center items-center my-6">
     <Image
-      src={landingNoFalten}
-      alt="Sloga: ¡Que no te falten huevos!"
-      fetchpriority="high"
-      loading="eager"
-    />
-    <Image
-      src={landingRoosters}
-      alt="Gallinas felices en el campo produciendo huevos orgánicos"
-      fetchpriority="high"
-      loading="eager"
-    />
+          src={arrowDown}
+          width={100}
+          height={250}
+          alt="flecha hacia abajo"
+          loading="eager"
+          fetchpriority="high"
+        />
   </div>
-  <div class="flex flex-row min-w-[100%] max-h-[40%] absolute bottom-0 justify-center">
-    <Image
-      src={landingGrass}
-      alt="Pasto del hogar de nuestras gallinas"
-      fetchpriority="high"
-      loading="eager"
-    />
+
+  <!-- Botón de pedido -->
+  <a
+    href="/contact"
+    target="_blank"
+    class="inline-block bg-black text-white font-extrabold py-3 px-8 rounded-md text-lg hover:bg-gray-800 transition-colors shadow-md"
+  >
+    Haz tu pedido aquí
+  </a>
+
+  <!-- Texto informativo -->
+  <p class="mt-12 text-xs text-center font-bold max-w-xl mx-auto">
+    En Don Bolva Distribuidora ponemos nuestros esfuerzos en fomentar la reutilización por ello invitamos a nuestros clientes a traer sus bandejas en sus próximas compras.
+  </p>
   </div>
 </main>
