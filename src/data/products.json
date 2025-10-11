@@ -39,7 +39,7 @@
         "id":"BANDEJA-PC",
         "item":"Bandeja Primera color",
         "price": 7800,
-        "active" : false
+        "active" : true
     },
     {
         "id":"BANDEJA-PB",
