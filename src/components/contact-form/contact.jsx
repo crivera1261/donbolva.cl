@@ -198,7 +198,7 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                 name="acepto"
                 className="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                 onChange={handleChange}
-            /> {" ¿Tienes un emprendimiento o empresa? Te enviaremos precios por mayor."}
+            /> {" ¿Tienes un emprendimiento o empresa? Te enviaremos precios al por mayor."}
 
             {!isLoading && (
                 <button
