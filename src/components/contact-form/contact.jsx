@@ -53,7 +53,7 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
             let keys = Object.keys(formData.cantidades);
             body += "\n\n";
             keys.map((key) => {
-                body += `${ key } [$ ${ Products.find(p => p.id == key)?.price }]:  ${ formData.cantidades[key] } unidades.\n`;
+                body += `${key} [$ ${Products.find(p => p.id == key)?.price}]:  ${formData.cantidades[key]} unidades.\n`;
             });
         }
 
@@ -94,7 +94,7 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
             onSubmit={handleSubmit}
         >
             <h1 className="text-4xl font-semibold">¡Haz tu pedido hoy!</h1>
-            <label className="w-1/3">Nombre</label>
+            <label className="w-1/3">Nombre(*)</label>
             <div
                 className="flex items-center border border-gray-300 rounded-xl px-3 py-2 shadow-sm bg-white"
             >
@@ -117,7 +117,7 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                     required
                 />
             </div>
-            <label className="w-1/3">Correo</label>
+            <label className="w-1/3">Correo (*)</label>
             <div
                 className="flex items-center border border-gray-300 rounded-xl px-3 py-2 shadow-sm bg-white"
             >
@@ -161,7 +161,6 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                     className="ml-2 w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
                     maxLength={12}
                     onChange={handleChange}
-                    required
                 />
                 <p id="phoneError" className="text-red-500 text-sm mt-1 hidden">
                     Número no válido. Use el formato +56912345678
@@ -188,6 +187,9 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                         </div>
                     ))
                 }
+                <p className='text-left text-black-600'>
+                    <small>(*) Campos obligatorios</small>
+                </p>
                 <p className='text-center text-red-600'>
                     <b>¡IMPORTANTE! Stock sujeto a disponibilidad</b>
                 </p>
