@@ -1,50 +1,62 @@
 [
     {
-        "id":"BANDEJA-SSEC",
-        "item":"Bandeja Super super extra color",
-        "price": 13800,
-        "active" : true
+        "id": "BANDEJA-SSEC",
+        "item": "Bandeja Super super extra color",
+        "price": 12800,
+        "active": true
     },
     {
-        "id":"BANDEJA-SSEB",
-        "item":"Bandeja Super super extra blanco",
-        "price": 13800,
-        "active" : true
+        "id": "BANDEJA-SSEB",
+        "item": "Bandeja Super super extra blanco",
+        "price": 12800,
+        "active": true
     },
     {
-        "id":"BANDEJA-SEC",
-        "item":"Bandeja Super extra color",
-        "price": 11400,
-        "active" : true
+        "id": "BANDEJA-SEC",
+        "item": "Bandeja Super extra color",
+        "price": 10400,
+        "active": true
     },
     {
-        "id":"BANDEJA-SEB",
-        "item":"Bandeja Super extra blanco",
-        "price": 11000,
-        "active" : true
+        "id": "BANDEJA-SEB",
+        "item": "Bandeja Super extra blanco",
+        "price": 10000,
+        "active": true
     },
     {
-        "id":"BANDEJA-EC",
-        "item":"Bandeja Extra color",
-        "price": 8900,
-        "active" : true
-    },
-    {
-        "id":"BANDEJA-EB",
-        "item":"Bandeja Extra blanco",
-        "price": 8500,
-        "active" : true
-    },
-    {
-        "id":"BANDEJA-PC",
-        "item":"Bandeja Primera color",
-        "price": 7800,
-        "active" : true
-    },
-    {
-        "id":"BANDEJA-PB",
-        "item":"Bandeja Primera blanco",
+        "id": "BANDEJA-EC",
+        "item": "Bandeja Extra color",
         "price": 7500,
-        "active" : true
-    }    
+        "active": true
+    },
+    {
+        "id": "BANDEJA-EB",
+        "item": "Bandeja Extra blanco",
+        "price": 7500,
+        "active": true
+    },
+    {
+        "id": "BANDEJA-PC",
+        "item": "Bandeja Primera color",
+        "price": 6000,
+        "active": true
+    },
+    {
+        "id": "BANDEJA-PB",
+        "item": "Bandeja Primera blanco",
+        "price": 6000,
+        "active": true
+    },
+    {
+        "id": "BANDEJA-IIC",
+        "item": "Bandeja Segunda color",
+        "price": 4900,
+        "active": true
+    },
+    {
+        "id": "BANDEJA-IIB",
+        "item": "Bandeja Segunda blanco",
+        "price": 4900,
+        "active": true
+    }
 ]
