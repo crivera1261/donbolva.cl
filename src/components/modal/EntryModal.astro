@@ -1,0 +1,50 @@
+---
+---
+
+<div id="entry-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden">
+    <!-- Botón cerrar -->
+    <button
+      id="close-modal"
+      aria-label="Cerrar"
+      class="absolute top-3 right-3 z-10 bg-black/60 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold transition-colors"
+    >
+      ✕
+    </button>
+
+    <!-- Imagen de precios -->
+    <img
+      src="/home/precios_2026.png"
+      alt="Precios 2026 Don Bolva"
+      class="w-full object-fill max-h-[80vh]"
+    />
+
+    <!-- Mensaje inferior -->
+    <div class="bg-[#432917] text-white text-center text-xs font-semibold px-4 py-3">
+      * Precios sujetos a confirmación y stock disponible.
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("entry-modal");
+  const closeBtn = document.getElementById("close-modal");
+
+  const MODAL_KEY = "donbolva_modal_shown";
+
+  if (sessionStorage.getItem(MODAL_KEY)) {
+    modal?.classList.add("hidden");
+  }
+
+  closeBtn?.addEventListener("click", () => {
+    modal?.classList.add("hidden");
+    sessionStorage.setItem(MODAL_KEY, "1");
+  });
+
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("hidden");
+      sessionStorage.setItem(MODAL_KEY, "1");
+    }
+  });
+</script>
