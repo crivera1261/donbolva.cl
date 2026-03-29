@@ -156,8 +156,8 @@ Selecciono contacto empresa:${(formData.acepto) ? "SI" : "NO"}`;
                     type="tel"
                     id="phone"
                     name="telefono"
-                    placeholder="+56912345678"
-                    pattern="^\+56\d{9}$"
+                    placeholder="912345678"
+                    pattern="\d{9}$"
                     className="ml-2 w-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
                     maxLength={12}
                     onChange={handleChange}
