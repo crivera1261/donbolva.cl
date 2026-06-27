@@ -19,6 +19,9 @@
       ],
       "@public/*":[
         "public*"
+      ],
+      "@lib/*":[
+        "src/lib/*"
       ]
     }
   }
