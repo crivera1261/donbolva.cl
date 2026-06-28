@@ -246,12 +246,39 @@ export default function ShopPage() {
             <span className="text-sm">Atte. Tío Bolva</span>
           </p>
           <p className="mt-6 max-w-[56ch] text-pretty text-lg leading-relaxed text-earth/70">
-            ¿Qué va a llevar?. Elige tus productos, agenda el día y la hora de entrega.
+            ¿Qué va a llevar? Elige tus productos, agenda el día y la hora de entrega.
           </p>
         </div>
       </header>
 
       <main id="huerta" className="mx-auto max-w-7xl px-6 pb-40">
+        {/* Cómo funciona */}
+        <section id="nosotros" className="mb-16 border-b border-earth/10 pb-16">
+          <div className="grid gap-10 md:grid-cols-3">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">01 · Eliges</p>
+              <h3 className="mt-3 font-serif text-2xl">Eliges tu canasta</h3>
+              <p className="mt-2 text-sm leading-relaxed text-earth/60">
+                Seleccionas los productos que necesitas. Sin suscripciones ni compromisos.
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">02 · Agendas</p>
+              <h3 className="mt-3 font-serif text-2xl">Eliges día y horario</h3>
+              <p className="mt-2 text-sm leading-relaxed text-earth/60">
+                Tú decides cuándo recibir: mañana o tarde, el día que mejor te acomode.
+              </p>
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">03 · Recibes</p>
+              <h3 className="mt-3 font-serif text-2xl">Pagas al recibir</h3>
+              <p className="mt-2 text-sm leading-relaxed text-earth/60">
+                Entrega en tu puerta o para retiro en tienda. Pagas en efectivo o por transferencia cuando recibes la canasta.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Category chips — sticky below the Astro header (h-16 mobile / h-20 sm+) */}
         <div className="sticky top-22 z-30 -mx-6 mb-10 border-b border-earth/10 bg-cream px-6 py-4">
           <div className="flex items-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
@@ -288,6 +315,7 @@ export default function ShopPage() {
           </div>
         </div>
 
+        
         <div className="flex flex-col gap-10 lg:flex-row">
           {/* Product Grid */}
           <section className="flex-1">
@@ -459,7 +487,7 @@ export default function ShopPage() {
               <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">03 · Recibes</p>
               <h3 className="mt-3 font-serif text-2xl">Pagas al recibir</h3>
               <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Entrega en tu puerta. Pagas en efectivo o por transferencia cuando recibes la canasta.
+                Entrega en tu puerta o para retiro en tienda. Pagas en efectivo o por transferencia cuando recibes la canasta.
               </p>
             </div>
           </div>
