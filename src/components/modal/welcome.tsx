@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { X } from "lucide-react";
+import welcomeImg from "./../../assets/welcome.jpeg";
 
 export function Welcome() {
   const [showEntryModal, setShowEntryModal] = useState(false);
@@ -18,22 +20,15 @@ export function Welcome() {
 
   return (
     <div className="fixed inset-0 z-70 flex items-center justify-center bg-earth/50 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-sm rounded-2xl bg-cream p-8 shadow-2xl ring-1 ring-black/5">
-        <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-terracota">
-          Bienvenido/a
-        </div>
-        <h2 className="font-serif text-3xl font-medium leading-tight text-earth">
-          Don Bolva
-        </h2>
-        <p className="mt-4 text-sm leading-relaxed text-earth/70">
-          Productos frescos directo del campo a tu puerta. Sin suscripciones, sin compromisos. Elige, agenda y paga al recibir.
-        </p>
+      <div className="relative w-full max-w-sm rounded-2xl bg-cream shadow-2xl ring-1 ring-black/5 overflow-hidden">
         <button
           onClick={closeEntryModal}
-          className="mt-6 w-full rounded-xl bg-olive py-3.5 text-sm font-medium text-cream transition-all hover:bg-olive/90 active:scale-[0.98]"
+          aria-label="Cerrar"
+          className="absolute right-3 top-3 flex size-8 items-center justify-center rounded-full bg-black/20 text-white backdrop-blur-sm transition-colors hover:bg-black/35"
         >
-          Ver productos
+          <X className="size-4" />
         </button>
+        <img src={welcomeImg.src} alt="Don Bolva" className="w-full object-cover" />
       </div>
     </div>
   );
