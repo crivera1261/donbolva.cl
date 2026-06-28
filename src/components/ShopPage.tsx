@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Minus,
   Plus,
@@ -7,39 +7,24 @@ import {
   ArrowRight,
   Check,
   Sprout,
-  Apple,
   Egg,
-  Leaf,
-  Nut,
   CalendarIcon,
   Sun,
   Sunset,
   Trash2,
-  MapPin,
+  ShoppingBag,
 } from "lucide-react";
 
-function InstagramIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-function WhatsappIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M25.3999 6.54663C22.9066 4.03996 19.5866 2.66663 16.0533 2.66663C8.77328 2.66663 2.83994 8.59996 2.83994 15.88C2.83994 18.2133 3.45328 20.48 4.59994 22.48L2.73328 29.3333L9.73328 27.4933C11.6666 28.5466 13.8399 29.1066 16.0533 29.1066C23.3333 29.1066 29.2666 23.1733 29.2666 15.8933C29.2666 12.36 27.8933 9.03996 25.3999 6.54663ZM16.0533 26.8666C14.0799 26.8666 12.1466 26.3333 10.4533 25.3333L10.0533 25.0933L5.89328 26.1866L6.99994 22.1333L6.73328 21.72C5.63994 19.9733 5.05328 17.9466 5.05328 15.88C5.05328 9.82663 9.98661 4.89329 16.0399 4.89329C18.9733 4.89329 21.7333 6.03996 23.7999 8.11996C25.8799 10.2 27.0133 12.96 27.0133 15.8933C27.0399 21.9466 22.1066 26.8666 16.0533 26.8666ZM22.0799 18.6533C21.7466 18.4933 20.1199 17.6933 19.8266 17.5733C19.5199 17.4666 19.3066 17.4133 19.0799 17.7333C18.8533 18.0666 18.2266 18.8133 18.0399 19.0266C17.8533 19.2533 17.6533 19.28 17.3199 19.1066C16.9866 18.9466 15.9199 18.5866 14.6666 17.4666C13.6799 16.5866 13.0266 15.5066 12.8266 15.1733C12.6399 14.84 12.7999 14.6666 12.9733 14.4933C13.1199 14.3466 13.3066 14.1066 13.4666 13.92C13.6266 13.7333 13.6933 13.5866 13.7999 13.3733C13.9066 13.1466 13.8533 12.96 13.7733 12.8C13.6933 12.64 13.0266 11.0133 12.7599 10.3466C12.4933 9.70663 12.2133 9.78663 12.0133 9.77329C11.8133 9.77329 11.5999 9.77329 11.3733 9.77329C11.1466 9.77329 10.7999 9.85329 10.4933 10.1866C10.1999 10.52 9.34661 11.32 9.34661 12.9466C9.34661 14.5733 10.5333 16.1466 10.6933 16.36C10.8533 16.5866 13.0266 19.92 16.3333 21.3466C17.1199 21.6933 17.7333 21.8933 18.2133 22.04C18.9999 22.2933 19.7199 22.2533 20.2933 22.1733C20.9333 22.08 22.2533 21.3733 22.5199 20.6C22.7999 19.8266 22.7999 19.1733 22.7066 19.0266C22.6133 18.88 22.4133 18.8133 22.0799 18.6533Z" fill="currentColor" />
-    </svg>
-  );
-}
+
+import { Header } from "./common/header";
+import { Hero } from "./common/hero";
+import { Us } from "./common/us";
 import { format, addDays, startOfDay, isBefore } from "date-fns";
 import { es } from "date-fns/locale";
 import { Calendar } from "./ui/calendar";
 import { cn } from "../lib/utils";
 
-type Category = "verduras" | "frutas" | "huevos" | "condimentos" | "frutos-secos";
+type Category = "canastas"| "huevos";
 
 type Product = {
   id: string;
@@ -49,27 +34,21 @@ type Product = {
   image: string;
   category: Category;
   note: string;
+  items?: string[];
 };
 
 type TimeSlot = "manana" | "tarde";
 
 const CATEGORIES: { id: Category; label: string; icon: typeof Sprout }[] = [
-  { id: "verduras", label: "Verduras", icon: Sprout },
-  { id: "frutas", label: "Frutas", icon: Apple },
-  { id: "huevos", label: "Huevos", icon: Egg },
-  { id: "condimentos", label: "Condimentos", icon: Leaf },
-  { id: "frutos-secos", label: "Frutos secos", icon: Nut },
+  { id: "canastas", label: "Canastas", icon: ShoppingBag },
+  { id: "huevos", label: "Huevos orgánicos", icon: Egg }
 ];
 
 const PRODUCTS: Product[] = [
-  { id: "tomate", name: "Tomate reliquia", unit: "kg", price: 4200, image: "/products/tomate.jpg", category: "verduras", note: "Cosecha de la semana, sin pesticidas." },
-  { id: "kale", name: "Kale rizado", unit: "atado", price: 1500, image: "/products/kale.jpg", category: "verduras", note: "Hoja firme, recién cortado." },
-  { id: "palta", name: "Palta Hass", unit: "kg", price: 5800, image: "/products/palta.jpg", category: "verduras", note: "Madura al punto, lista para servir." },
-  { id: "frutillas", name: "Frutillas del valle", unit: "canasto 500g", price: 3400, image: "/products/frutillas.jpg", category: "frutas", note: "Recién recolectadas al amanecer." },
-  { id: "huevos", name: "Huevos de campo", unit: "docena", price: 3800, image: "/products/huevos.jpg", category: "huevos", note: "Gallinas libres, alimentación natural." },
-  { id: "miel", name: "Miel de azahar", unit: "frasco 500g", price: 5900, image: "/products/miel.jpg", category: "condimentos", note: "Cosecha artesanal del apiario." },
-  { id: "hierbas", name: "Romero y tomillo", unit: "ramo", price: 1200, image: "/products/hierbas.jpg", category: "condimentos", note: "Atado con cordel, aroma intenso." },
-  { id: "nueces", name: "Nueces mariposa", unit: "250g", price: 5400, image: "/products/nueces.jpg", category: "frutos-secos", note: "Pelado a mano, cosecha del año." },
+  { id: "canasta-clasica", name: "Canasta Clásica", unit: "un", price: 18900, image: "/products/canasta.png", category: "canastas", note: "Cosecha de la semana, sin pesticidas.", items: ["1 kg de papas", "1 kg de tomates"] },
+  { id: "canasta-Huerta", name: "Canasta Huerta", unit: "un", price: 22500, image: "/products/canasta.png", category: "canastas", note: "Hoja firme, recién cortado.", items: ["1 kg de papas", "1 atado de hierbas"] },
+  { id: "huevos", name: "Huevos Extra color/blanco", unit: "docena", price: 3800, image: "/products/huevos.png", category: "huevos", note: "Gallinas libres, alimentación natural." },
+  { id: "huevos", name: "Huevos Super Extra Color/blanco", unit: "Bandeja 30 uni", price: 9100, image: "/products/huevos.png", category: "huevos", note: "Gallinas libres, alimentación natural." },
 ];
 
 function formatCLP(n: number) {
@@ -77,7 +56,7 @@ function formatCLP(n: number) {
 }
 
 export default function ShopPage() {
-  const [activeCat, setActiveCat] = useState<Category>("verduras");
+  const [activeCat, setActiveCat] = useState<Category>("canastas");
   const [cart, setCart] = useState<Record<string, number>>({});
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState("");
@@ -90,6 +69,18 @@ export default function ShopPage() {
   const [timeSlot, setTimeSlot] = useState<TimeSlot | undefined>(undefined);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [showEntryModal, setShowEntryModal] = useState(false);
+
+  useEffect(() => {
+    if (!localStorage.getItem("donbolva_visited")) {
+      setShowEntryModal(true);
+    }
+  }, []);
+
+  const closeEntryModal = () => {
+    localStorage.setItem("donbolva_visited", "1");
+    setShowEntryModal(false);
+  };
 
   const visible = useMemo(
     () => PRODUCTS.filter((p) => p.category === activeCat),
@@ -198,86 +189,14 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen bg-cream font-sans text-earth selection:bg-olive/10">
       {/* Nav */}
-      <nav className="sticky top-0 z-40 border-b border-earth/10 bg-cream">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="/">
-            <img src="/logo2.png" alt="Don Bolva" className="h-36 w-auto object-contain" />
-          </a>
-          <div className="flex items-center gap-1 sm:gap-3">
-            <div className="hidden items-center sm:flex">
-              <a href="https://www.instagram.com/donbolva_distribuidora?igsh=Z3hqMzc5bXZxNjA1" target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
-                <InstagramIcon className="size-6" />
-              </a>
-              <a href="https://wa.me/56974587354?text=Hola!%20me%20puedes%20entregar%20más%20información%20sobre%20la%20venta%20de%20huevos." target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
-                <WhatsappIcon className="size-6" />
-              </a>
-              <a href="https://maps.app.goo.gl/D2eX6zAxU5TttWGX7" target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
-                <MapPin className="size-6" strokeWidth={1.75} />
-              </a>
-            </div>
-            <button
-              onClick={() => itemCount > 0 && setOpenModal(true)}
-              disabled={itemCount === 0}
-              className="flex items-center gap-2 rounded-full bg-olive px-4 py-2 text-sm font-medium text-cream ring-1 ring-olive transition-transform hover:-translate-y-px disabled:opacity-40"
-            >
-              <ShoppingBasket className="size-4 shrink-0" />
-              <span className="hidden sm:inline">Mi Canasta</span>
-              <span className="flex size-5 items-center justify-center rounded-full bg-cream/20 text-[10px]">
-                {itemCount}
-              </span>
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Header itemCount={itemCount} onOpenCart={() => setOpenModal(true)} />
 
       {/* Hero */}
-      <header className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-        <div className="max-w-3xl">
-          <span className="mb-6 inline-block text-[11px] font-semibold uppercase tracking-[0.25em] text-terracota">
-            Creemos en una mejor alimentación · agenda tu entrega
-          </span>
-          <span className="mb-6 inline-block text-2xl font-semibold uppercase tracking-[0.25em] text-terracota">
-            Pase por acá nomá Caserita/o
-          </span>
-          <h2 className="text-balance font-serif text-4xl font-medium leading-tight tracking-tight text-earth md:text-5xl">
-            "Productos nobles para el bienestar de tu familia lo que tu llevas, es lo mismo que llevo a mi casa."            
-          </h2>
-          <p>
-            <span className="text-sm">Atte. Tío Bolva</span>
-          </p>
-          <p className="mt-6 max-w-[56ch] text-pretty text-lg leading-relaxed text-earth/70">
-            ¿Qué va a llevar? Elige tus productos, agenda el día y la hora de entrega.
-          </p>
-        </div>
-      </header>
+      <Hero />
 
       <main id="huerta" className="mx-auto max-w-7xl px-6 pb-40">
         {/* Cómo funciona */}
-        <section id="nosotros" className="mb-16 border-b border-earth/10 pb-16">
-          <div className="grid gap-10 md:grid-cols-3">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">01 · Eliges</p>
-              <h3 className="mt-3 font-serif text-2xl">Eliges tu canasta</h3>
-              <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Seleccionas los productos que necesitas. Sin suscripciones ni compromisos.
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">02 · Agendas</p>
-              <h3 className="mt-3 font-serif text-2xl">Eliges día y horario</h3>
-              <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Tú decides cuándo recibir: mañana o tarde, el día que mejor te acomode.
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">03 · Recibes</p>
-              <h3 className="mt-3 font-serif text-2xl">Pagas al recibir</h3>
-              <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Entrega en tu puerta o para retiro en tienda. Pagas en efectivo o por transferencia cuando recibes la canasta.
-              </p>
-            </div>
-          </div>
-        </section>
+        <Us/>
 
         {/* Category chips — sticky below the Astro header (h-16 mobile / h-20 sm+) */}
         <div className="sticky top-22 z-30 -mx-6 mb-10 border-b border-earth/10 bg-cream px-6 py-4">
@@ -381,6 +300,16 @@ export default function ShopPage() {
                       )}
                     </div>
                     <p className="mt-1.5 text-xs text-earth/45">{p.note}</p>
+                    {p.items && p.items.length > 0 && (
+                      <ul className="mt-2 space-y-0.5">
+                        {p.items.map((item) => (
+                          <li key={item} className="flex items-center gap-1.5 text-xs text-earth/60">
+                            <span className="size-1 shrink-0 rounded-full bg-olive/50" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </article>
                 );
               })}
@@ -465,33 +394,6 @@ export default function ShopPage() {
             </div>
           </aside>
         </div>
-
-        {/* Cómo funciona */}
-        <section id="nosotros" className="mt-32 border-t border-earth/10 pt-16">
-          <div className="grid gap-10 md:grid-cols-3">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">01 · Eliges</p>
-              <h3 className="mt-3 font-serif text-2xl">Eliges tu canasta</h3>
-              <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Seleccionas los productos que necesitas. Sin suscripciones ni compromisos.
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">02 · Agendas</p>
-              <h3 className="mt-3 font-serif text-2xl">Eliges día y horario</h3>
-              <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Tú decides cuándo recibir: mañana o tarde, el día que mejor te acomode.
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">03 · Recibes</p>
-              <h3 className="mt-3 font-serif text-2xl">Pagas al recibir</h3>
-              <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Entrega en tu puerta o para retiro en tienda. Pagas en efectivo o por transferencia cuando recibes la canasta.
-              </p>
-            </div>
-          </div>
-        </section>
       </main>
 
       {/* Floating basket — mobile only */}
@@ -765,6 +667,29 @@ export default function ShopPage() {
                 </p>
               </>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Modal de bienvenida — primera visita */}
+      {showEntryModal && (
+        <div className="fixed inset-0 z-70 flex items-center justify-center bg-earth/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-2xl bg-cream p-8 shadow-2xl ring-1 ring-black/5">
+            <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-terracota">
+              Bienvenido/a
+            </div>
+            <h2 className="font-serif text-3xl font-medium leading-tight text-earth">
+              Don Bolva
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-earth/70">
+              Productos frescos directo del campo a tu puerta. Sin suscripciones, sin compromisos. Elige, agenda y paga al recibir.
+            </p>
+            <button
+              onClick={closeEntryModal}
+              className="mt-6 w-full rounded-xl bg-olive py-3.5 text-sm font-medium text-cream transition-all hover:bg-olive/90 active:scale-[0.98]"
+            >
+              Ver productos
+            </button>
           </div>
         </div>
       )}
