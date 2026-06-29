@@ -31,7 +31,7 @@ export function Header({ itemCount = 0, onOpenCart }: HeaderProps) {
           <img src="/logo2.png" alt="Don Bolva" className="h-36 w-auto object-contain" />
         </a>
         <div className="flex items-center gap-1 sm:gap-3">
-          <div className="hidden items-center sm:flex">
+          <div className="flex items-center">
             <a href="https://www.instagram.com/donbolva_distribuidora?igsh=Z3hqMzc5bXZxNjA1" target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
               <InstagramIcon className="size-6" />
             </a>
