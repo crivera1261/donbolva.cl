@@ -10,7 +10,6 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
-
 import { Header } from "./common/header";
 import { Hero } from "./common/hero";
 import { Us } from "./common/us";
@@ -20,7 +19,7 @@ import { format, startOfDay } from "date-fns";
 import { es } from "date-fns/locale";
 import { cn } from "../lib/utils";
 
-type Category = "canastas"| "huevos";
+type Category = "canastas" | "huevos";
 
 type Product = {
   id: string;
@@ -29,22 +28,57 @@ type Product = {
   price: number;
   image: string;
   category: Category;
-  note: string;
   items?: string[];
+  caliber?: string;
+  weight?: string;
 };
 
 type TimeSlot = "manana" | "tarde";
 
 const CATEGORIES: { id: Category; label: string; icon: typeof Sprout }[] = [
   { id: "canastas", label: "Canastas", icon: ShoppingBag },
-  { id: "huevos", label: "Huevos orgánicos", icon: Egg }
+  { id: "huevos", label: "Huevos orgánicos", icon: Egg },
 ];
 
 const PRODUCTS: Product[] = [
-  { id: "canasta-clasica", name: "Canasta Clásica", unit: "un", price: 18900, image: "/products/canasta.png", category: "canastas", note: "Cosecha de la semana, sin pesticidas.", items: ["1 kg de papas", "1 kg de tomates"] },
-  { id: "canasta-Huerta", name: "Canasta Huerta", unit: "un", price: 22500, image: "/products/canasta.png", category: "canastas", note: "Hoja firme, recién cortado.", items: ["1 kg de papas", "1 atado de hierbas"] },
-  { id: "huevos", name: "Huevos Extra color/blanco", unit: "docena", price: 3800, image: "/products/huevos.png", category: "huevos", note: "Gallinas libres, alimentación natural." },
-  { id: "huevos", name: "Huevos Super Extra Color/blanco", unit: "Bandeja 30 uni", price: 9100, image: "/products/huevos.png", category: "huevos", note: "Gallinas libres, alimentación natural." },
+  {
+    id: "canasta-clasica",
+    name: "Canasta Clásica",
+    unit: "un",
+    price: 18900,
+    image: "/products/canasta.png",
+    category: "canastas",
+    items: ["1 kg de papas", "1 kg de tomates"],
+  },
+  {
+    id: "canasta-Huerta",
+    name: "Canasta Huerta",
+    unit: "un",
+    price: 22500,
+    image: "/products/canasta.png",
+    category: "canastas",
+    items: ["1 kg de papas", "1 atado de hierbas"],
+  },
+  {
+    id: "huevos-extra",
+    name: "Huevos Extra",
+    unit: "docena",
+    price: 3800,
+    image: "/products/huevos.png",
+    category: "huevos",
+    caliber: "Extra Grande (XL)",
+    weight: "73 – 83 g por unidad",
+  },
+  {
+    id: "huevos-super-extra",
+    name: "Huevos Super Extra",
+    unit: "Bandeja 30 uni",
+    price: 9100,
+    image: "/products/huevos.png",
+    category: "huevos",
+    caliber: "Extra Grande (XL)",
+    weight: "73 – 83 g por unidad",
+  },
 ];
 
 function formatCLP(n: number) {
@@ -58,8 +92,12 @@ export default function ShopPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [payment, setPayment] = useState<"efectivo" | "transferencia">("efectivo");
-  const [fulfillment, setFulfillment] = useState<"retiro" | "delivery">("delivery");
+  const [payment, setPayment] = useState<"efectivo" | "transferencia">(
+    "efectivo",
+  );
+  const [fulfillment, setFulfillment] = useState<"retiro" | "delivery">(
+    "delivery",
+  );
   const [confirmed, setConfirmed] = useState(false);
   const [deliveryDate, setDeliveryDate] = useState<Date | undefined>(undefined);
   const [timeSlot, setTimeSlot] = useState<TimeSlot | undefined>(undefined);
@@ -86,7 +124,8 @@ export default function ShopPage() {
 
   const countByCat = useMemo(() => {
     const map: Record<string, number> = {};
-    for (const p of PRODUCTS) map[p.category] = (map[p.category] ?? 0) + (cart[p.id] ?? 0);
+    for (const p of PRODUCTS)
+      map[p.category] = (map[p.category] ?? 0) + (cart[p.id] ?? 0);
     return map;
   }, [cart]);
 
@@ -116,7 +155,8 @@ export default function ShopPage() {
     const fechaStr = deliveryDate
       ? format(deliveryDate, "EEEE d 'de' MMMM yyyy", { locale: es })
       : "";
-    const horarioStr = timeSlot === "manana" ? "Mañana (9:00–13:00)" : "Tarde (15:00–19:00)";
+    const horarioStr =
+      timeSlot === "manana" ? "Mañana (9:00–13:00)" : "Tarde (15:00–19:00)";
 
     let body = `NUEVO PEDIDO — Don Bolva\n\n`;
     body += `Nombre: ${name}\n`;
@@ -143,7 +183,7 @@ export default function ShopPage() {
               "Basic ODkzMjk0ZGMtZjA2OC00YjM0LThkYjAtMzBhMzkzZmFjNTEzOlBDQ1l3T2VidnhwZkVqVTVzTzFnVnlhdTB6UVNaVGJ5QWNQSHJqY1JGcURldTFQQUxoMGliRVBKcGlhNGJiS0Y=",
           },
           body: JSON.stringify({ email, body }),
-        }
+        },
       );
       if (!response.ok) throw new Error(`Error ${response.status}`);
       setConfirmed(true);
@@ -180,7 +220,7 @@ export default function ShopPage() {
 
       <main id="huerta" className="mx-auto max-w-7xl px-6 pb-40">
         {/* Cómo funciona */}
-        <Us/>
+        <Us />
 
         {/* Category chips — sticky below the Astro header (h-16 mobile / h-20 sm+) */}
         <div className="sticky top-22 z-30 -mx-6 mb-10 border-b border-earth/10 bg-cream px-6 py-4">
@@ -206,7 +246,9 @@ export default function ShopPage() {
                     <span
                       className={cn(
                         "ml-0.5 flex size-5 items-center justify-center rounded-full text-[10px] font-semibold tabular-nums",
-                        isActive ? "bg-cream/25 text-cream" : "bg-terracota/15 text-terracota",
+                        isActive
+                          ? "bg-cream/25 text-cream"
+                          : "bg-terracota/15 text-terracota",
                       )}
                     >
                       {n}
@@ -218,7 +260,6 @@ export default function ShopPage() {
           </div>
         </div>
 
-        
         <div className="flex flex-col gap-10 lg:flex-row">
           {/* Product Grid */}
           <section className="flex-1">
@@ -226,18 +267,21 @@ export default function ShopPage() {
               {visible.map((p) => {
                 const qty = cart[p.id] ?? 0;
                 return (
-                  <article key={p.id} className="group flex flex-col">
-                    <div
-                      className={cn(
-                        "relative mb-4 aspect-square w-full overflow-hidden rounded-xl bg-earth/5 outline outline-1 -outline-offset-1 outline-black/5 transition-all",
-                        qty > 0 && "ring-2 ring-olive/40 ring-offset-2 ring-offset-cream",
-                      )}
-                    >
+                  <article
+                    key={p.id}
+                    className={cn(
+                      "group flex flex-col overflow-hidden rounded-2xl bg-white/70 ring-1 ring-black/5 transition-all",
+                      qty > 0 && "ring-2 ring-olive/50",
+                    )}
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-secondary">
                       <img
                         src={p.image}
                         alt={p.name}
+                        width={1024}
+                        height={1024}
                         loading="lazy"
-                        className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                       {qty > 0 && (
                         <span className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-full bg-olive text-xs font-semibold text-cream shadow-md">
@@ -245,55 +289,92 @@ export default function ShopPage() {
                         </span>
                       )}
                     </div>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <h3 className="font-serif text-lg font-medium leading-tight">
-                          {p.name}
-                        </h3>
-                        <p className="mt-0.5 text-sm text-earth/50">
-                          {formatCLP(p.price)} / {p.unit}
-                        </p>
-                      </div>
-                      {qty === 0 ? (
-                        <button
-                          onClick={() => inc(p.id)}
-                          className="shrink-0 rounded-full border border-earth/10 px-4 py-1.5 text-sm font-medium transition-colors hover:border-olive hover:bg-olive hover:text-cream"
-                        >
-                          Agregar
-                        </button>
-                      ) : (
-                        <div className="flex shrink-0 items-center gap-1 rounded-full border border-earth/10 bg-white/60 p-1">
-                          <button
-                            onClick={() => dec(p.id)}
-                            aria-label="Quitar uno"
-                            className="flex size-7 items-center justify-center rounded-full transition-colors hover:bg-earth/5"
-                          >
-                            <Minus className="size-3" strokeWidth={2.5} />
-                          </button>
-                          <span className="w-6 text-center text-sm font-medium tabular-nums">
-                            {qty}
-                          </span>
-                          <button
-                            onClick={() => inc(p.id)}
-                            aria-label="Agregar uno"
-                            className="flex size-7 items-center justify-center rounded-full bg-olive text-cream transition-transform hover:scale-105"
-                          >
-                            <Plus className="size-3" strokeWidth={2.5} />
-                          </button>
+
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="font-serif text-lg font-medium leading-tight text-earth">
+                        {p.name}
+                      </h3>
+
+                      {p.category === "canastas" && p.items && (
+                        <ul className="mt-3 space-y-1.5">
+                          {p.items.map((it) => (
+                            <li
+                              key={it}
+                              className="flex items-start gap-2 text-xs leading-relaxed text-earth/65"
+                            >
+                              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-olive/60" />
+                              <span>{it}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {p.category === "huevos" && (
+                        <div className="mt-3 space-y-1.5 text-xs text-earth/65">
+                          <p>
+                            <span className="text-earth/45">Calibre · </span>
+                            <span className="font-medium text-earth/85">
+                              {p.caliber}
+                            </span>
+                          </p>
+                          <p>
+                            <span className="text-earth/45">Peso · </span>
+                            <span className="font-medium text-earth/85">
+                              {p.weight}
+                            </span>
+                          </p>
+                          <p>
+                            <span className="text-earth/45">Formato · </span>
+                            <span className="font-medium text-earth/85">
+                              Docena (12 un.)
+                            </span>
+                          </p>
                         </div>
                       )}
+
+                      <div className="mt-5 flex items-end justify-between gap-3 border-t border-earth/5 pt-4">
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest text-earth/45">
+                            Precio
+                          </p>
+                          <p className="font-serif text-xl text-earth tabular-nums">
+                            {formatCLP(p.price)}
+                          </p>
+                          <p className="text-[10px] text-earth/45">
+                            por {p.unit}
+                          </p>
+                        </div>
+
+                        {qty === 0 ? (
+                          <button
+                            onClick={() => inc(p.id)}
+                            className="shrink-0 rounded-full border border-earth/10 px-4 py-2 text-sm font-medium transition-colors hover:border-olive hover:bg-olive hover:text-cream"
+                          >
+                            Agregar
+                          </button>
+                        ) : (
+                          <div className="flex shrink-0 items-center gap-1 rounded-full border border-earth/10 bg-white p-1">
+                            <button
+                              onClick={() => dec(p.id)}
+                              aria-label="Quitar uno"
+                              className="flex size-7 items-center justify-center rounded-full transition-colors hover:bg-earth/5"
+                            >
+                              <Minus className="size-3" strokeWidth={2.5} />
+                            </button>
+                            <span className="w-6 text-center text-sm font-medium tabular-nums">
+                              {qty}
+                            </span>
+                            <button
+                              onClick={() => inc(p.id)}
+                              aria-label="Agregar uno"
+                              className="flex size-7 items-center justify-center rounded-full bg-olive text-cream transition-transform hover:scale-105"
+                            >
+                              <Plus className="size-3" strokeWidth={2.5} />
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <p className="mt-1.5 text-xs text-earth/45">{p.note}</p>
-                    {p.items && p.items.length > 0 && (
-                      <ul className="mt-2 space-y-0.5">
-                        {p.items.map((item) => (
-                          <li key={item} className="flex items-center gap-1.5 text-xs text-earth/60">
-                            <span className="size-1 shrink-0 rounded-full bg-olive/50" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </article>
                 );
               })}
@@ -306,7 +387,10 @@ export default function ShopPage() {
               <div className="overflow-hidden rounded-2xl border border-earth/10 bg-white/70 shadow-sm">
                 <div className="flex items-center justify-between border-b border-earth/10 bg-earth/[0.03] px-5 py-4">
                   <div className="flex items-center gap-2">
-                    <ShoppingBasket className="size-4 text-olive" strokeWidth={1.75} />
+                    <ShoppingBasket
+                      className="size-4 text-olive"
+                      strokeWidth={1.75}
+                    />
                     <span className="font-serif text-base font-medium text-earth">
                       Tu canasta
                     </span>
@@ -319,37 +403,63 @@ export default function ShopPage() {
                 {cartItems.length === 0 ? (
                   <div className="px-5 py-10 text-center">
                     <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-earth/[0.04]">
-                      <Sprout className="size-5 text-earth/40" strokeWidth={1.5} />
+                      <Sprout
+                        className="size-5 text-earth/40"
+                        strokeWidth={1.5}
+                      />
                     </div>
-                    <p className="text-sm text-earth/55">Tu canasta está vacía.</p>
-                    <p className="mt-1 text-xs text-earth/40">Agrega productos para verlos aquí.</p>
+                    <p className="text-sm text-earth/55">
+                      Tu canasta está vacía.
+                    </p>
+                    <p className="mt-1 text-xs text-earth/40">
+                      Agrega productos para verlos aquí.
+                    </p>
                   </div>
                 ) : (
                   <>
                     <ul className="max-h-[380px] divide-y divide-earth/5 overflow-y-auto">
                       {cartItems.map((i) => (
-                        <li key={i.id} className="flex items-center gap-3 px-5 py-3">
+                        <li
+                          key={i.id}
+                          className="flex items-center gap-3 px-5 py-3"
+                        >
                           <img
                             src={i.image}
                             alt=""
                             className="size-12 shrink-0 rounded-lg object-cover ring-1 ring-black/5"
                           />
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-earth">{i.name}</p>
+                            <p className="truncate text-sm font-medium text-earth">
+                              {i.name}
+                            </p>
                             <p className="text-xs text-earth/50">
                               {i.qty} × {formatCLP(i.price)}
                             </p>
                           </div>
                           <div className="flex flex-col items-end gap-1">
-                            <span className="text-sm font-medium tabular-nums">{formatCLP(i.subtotal)}</span>
+                            <span className="text-sm font-medium tabular-nums">
+                              {formatCLP(i.subtotal)}
+                            </span>
                             <div className="flex items-center gap-1">
-                              <button onClick={() => dec(i.id)} className="flex size-5 items-center justify-center rounded-full hover:bg-earth/5" aria-label="Quitar uno">
+                              <button
+                                onClick={() => dec(i.id)}
+                                className="flex size-5 items-center justify-center rounded-full hover:bg-earth/5"
+                                aria-label="Quitar uno"
+                              >
                                 <Minus className="size-2.5" strokeWidth={2.5} />
                               </button>
-                              <button onClick={() => inc(i.id)} className="flex size-5 items-center justify-center rounded-full hover:bg-earth/5" aria-label="Agregar uno">
+                              <button
+                                onClick={() => inc(i.id)}
+                                className="flex size-5 items-center justify-center rounded-full hover:bg-earth/5"
+                                aria-label="Agregar uno"
+                              >
                                 <Plus className="size-2.5" strokeWidth={2.5} />
                               </button>
-                              <button onClick={() => removeItem(i.id)} className="ml-1 flex size-5 items-center justify-center rounded-full text-earth/40 hover:bg-terracota/10 hover:text-terracota" aria-label="Eliminar">
+                              <button
+                                onClick={() => removeItem(i.id)}
+                                className="ml-1 flex size-5 items-center justify-center rounded-full text-earth/40 hover:bg-terracota/10 hover:text-terracota"
+                                aria-label="Eliminar"
+                              >
                                 <Trash2 className="size-2.5" strokeWidth={2} />
                               </button>
                             </div>
@@ -362,7 +472,9 @@ export default function ShopPage() {
                         <span className="text-[10px] font-semibold uppercase tracking-widest text-earth/50">
                           Total estimado
                         </span>
-                        <span className="font-serif text-xl tabular-nums">{formatCLP(total)}</span>
+                        <span className="font-serif text-xl tabular-nums">
+                          {formatCLP(total)}
+                        </span>
                       </div>
                       <button
                         onClick={() => setOpenModal(true)}
@@ -388,7 +500,9 @@ export default function ShopPage() {
               <span className="text-[10px] uppercase tracking-widest text-cream/50">
                 Total · {itemCount} {itemCount === 1 ? "item" : "items"}
               </span>
-              <span className="font-serif text-xl tabular-nums">{formatCLP(total)}</span>
+              <span className="font-serif text-xl tabular-nums">
+                {formatCLP(total)}
+              </span>
             </div>
             <div className="h-8 w-px bg-white/10" />
             <button
