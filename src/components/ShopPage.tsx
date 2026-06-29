@@ -101,6 +101,7 @@ export default function ShopPage() {
   const [confirmed, setConfirmed] = useState(false);
   const [deliveryDate, setDeliveryDate] = useState<Date | undefined>(undefined);
   const [timeSlot, setTimeSlot] = useState<TimeSlot | undefined>(undefined);
+  const [address, setAddress] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
@@ -145,7 +146,8 @@ export default function ShopPage() {
     email.trim().includes("@") &&
     cartItems.length > 0 &&
     deliveryDate !== undefined &&
-    timeSlot !== undefined;
+    timeSlot !== undefined &&
+    (fulfillment === "retiro" || address.trim().length > 0);
 
   const handleConfirm = async () => {
     if (!canConfirm || isSubmitting) return;
@@ -165,12 +167,13 @@ export default function ShopPage() {
     body += `Fecha de entrega: ${fechaStr}\n`;
     body += `Horario: ${horarioStr}\n`;
     body += `Tipo de entrega: ${fulfillment === "delivery" ? "Delivery (a domicilio)" : "Retiro en tienda"}\n`;
+    if (fulfillment === "delivery") body += `Dirección: ${address}\n`;
     body += `Método de pago: ${payment === "efectivo" ? "Efectivo" : "Transferencia"}\n\n`;
     body += `--- PRODUCTOS ---\n`;
     cartItems.forEach((i) => {
       body += `${i.name} × ${i.qty} ${i.unit} → ${formatCLP(i.subtotal)}\n`;
     });
-    body += `\nTotal: ${formatCLP(total)}\n(Envío bonificado)`;
+    body += `\nTotal: ${formatCLP(total)}\n(Envío gratuito)`;
 
     try {
       const response = await fetch(
@@ -203,6 +206,7 @@ export default function ShopPage() {
     setEmail("");
     setPayment("efectivo");
     setFulfillment("delivery");
+    setAddress("");
     setDeliveryDate(undefined);
     setTimeSlot(undefined);
     setSubmitError("");
@@ -480,7 +484,7 @@ export default function ShopPage() {
                         onClick={() => setOpenModal(true)}
                         className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-terracota px-4 py-2.5 text-sm font-medium text-white transition-transform active:scale-[0.98]"
                       >
-                        <span>Agendar pedido</span>
+                        <span>Agende su pedido</span>
                         <ArrowRight className="size-4" />
                       </button>
                     </div>
@@ -537,6 +541,8 @@ export default function ShopPage() {
         setName={setName}
         setPhone={setPhone}
         setEmail={setEmail}
+        address={address}
+        setAddress={setAddress}
         setFulfillment={setFulfillment}
         setPayment={setPayment}
         setDeliveryDate={setDeliveryDate}
