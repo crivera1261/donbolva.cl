@@ -1,5 +1,10 @@
 export const Us = () : any => {
    return( <section id="nosotros" className="mb-32  border-earth/10">
+          <div className="grid gap-10">
+            <span className="mb-6 inline-block text-xl font-semibold uppercase tracking-[0.25em]">
+              ¿Cómo agendo mi pedido?
+            </span>
+          </div>
           <div className="grid gap-10 md:grid-cols-3">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">01 · Eliges</p>
