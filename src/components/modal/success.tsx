@@ -1,4 +1,5 @@
-import { Check, X, Sun, Sunset, CalendarIcon } from "lucide-react";
+import { useState } from "react";
+import { X, Sun, Sunset, CalendarIcon } from "lucide-react";
 import { format, addDays, isBefore } from "date-fns";
 import { es } from "date-fns/locale";
 import { Calendar } from "./../ui/calendar";
@@ -21,6 +22,7 @@ type SuccessModalProps = {
   name: string;
   phone: string;
   email: string;
+  address: string;
   fulfillment: "retiro" | "delivery";
   payment: "efectivo" | "transferencia";
   deliveryDate: Date | undefined;
@@ -35,6 +37,7 @@ type SuccessModalProps = {
   setName: (v: string) => void;
   setPhone: (v: string) => void;
   setEmail: (v: string) => void;
+  setAddress: (v: string) => void;
   setFulfillment: (v: "retiro" | "delivery") => void;
   setPayment: (v: "efectivo" | "transferencia") => void;
   setDeliveryDate: (d: Date | undefined) => void;
@@ -53,6 +56,7 @@ export function SuccessModal({
   name,
   phone,
   email,
+  address,
   fulfillment,
   payment,
   deliveryDate,
@@ -67,6 +71,7 @@ export function SuccessModal({
   setName,
   setPhone,
   setEmail,
+  setAddress,
   setFulfillment,
   setPayment,
   setDeliveryDate,
@@ -74,6 +79,22 @@ export function SuccessModal({
   handleConfirm,
   resetOrder,
 }: SuccessModalProps) {
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [phoneTouched, setPhoneTouched] = useState(false);
+
+  const PHONE_PREFIX = "+569";
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  const phoneOk = new RegExp(`^\\${PHONE_PREFIX}\\d{8}$`).test(phone);
+
+  const emailError = emailTouched && email.length > 0 && !emailOk;
+  const phoneError = phoneTouched && phone.length > 0 && !phoneOk;
+
+  const handlePhoneChange = (raw: string) => {
+    if (raw.length < PHONE_PREFIX.length) { setPhone(PHONE_PREFIX); return; }
+    const digits = raw.slice(PHONE_PREFIX.length).replace(/\D/g, "").slice(0, 8);
+    setPhone(PHONE_PREFIX + digits);
+  };
+
   if (!openModal) return null;
 
   return (
@@ -87,10 +108,12 @@ export function SuccessModal({
       >
         {confirmed ? (
           <div className="py-6 text-center">
-            <div className="mx-auto flex size-14 items-center justify-center rounded-full bg-olive/10 text-olive">
-              <Check className="size-7" strokeWidth={2.5} />
-            </div>
-            <h2 className="mt-6 font-serif text-3xl font-medium text-earth">Pedido agendado</h2>
+            <img
+              src="/modal/success-delivery.png"
+              alt="Pedido confirmado"
+              className="mx-auto w-48"
+            />
+            <h2 className="mt-4 font-serif text-3xl font-medium text-earth">Pedido agendado</h2>
             <p className="mx-auto mt-3 max-w-[36ch] text-sm leading-relaxed text-earth/70">
               Gracias <strong>{name}</strong>.{" "}
               <strong>
@@ -116,7 +139,7 @@ export function SuccessModal({
           <>
             <div className="mb-6 flex items-start justify-between">
               <span className="font-serif text-2xl font-medium italic text-olive">
-                Tu pedido
+                Su pedido caserito/a
               </span>
               <button
                 onClick={() => setOpenModal(false)}
@@ -130,7 +153,7 @@ export function SuccessModal({
             <div className="h-px bg-earth/10" />
 
             <p className="mt-6 text-pretty text-sm leading-relaxed text-earth/80">
-              Revisa tu pedido, elige cuándo lo recibes y nos contactamos contigo para confirmar.
+              Revise su pedido, elija cuando lo recibe y nos contactamos con usted para confirmar.
             </p>
 
             {/* Resumen del pedido */}
@@ -149,7 +172,7 @@ export function SuccessModal({
               ))}
               <div className="flex justify-between border-t border-earth/5 py-2 text-sm">
                 <span className="text-earth/60">Costo de envío</span>
-                <span className="text-olive">Bonificado</span>
+                <span className="text-olive">Gratuito</span>
               </div>
               <div className="mt-2 flex justify-between border-t border-earth/10 pt-4 font-serif text-lg">
                 <span>Total a pagar</span>
@@ -176,7 +199,7 @@ export function SuccessModal({
                 <p className="mt-2 flex items-center gap-2 text-xs text-earth/70">
                   <CalendarIcon className="size-3.5 text-olive" strokeWidth={1.75} />
                   <span>
-                    Entrega el{" "}
+                    Entrega para el día {" "}
                     <strong className="text-earth">
                       {format(deliveryDate, "EEEE d 'de' MMMM", { locale: es })}
                     </strong>
@@ -225,7 +248,7 @@ export function SuccessModal({
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="¿Cómo te llamas?"
+                  placeholder="¿Cómo se llama?"
                   className="mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow focus:ring-2 focus:ring-olive/40"
                 />
               </div>
@@ -234,10 +257,23 @@ export function SuccessModal({
                 <input
                   type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="+56 9 ..."
-                  className="mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow focus:ring-2 focus:ring-olive/40"
+                  onFocus={() => { if (!phone) setPhone(PHONE_PREFIX); }}
+                  onChange={(e) => handlePhoneChange(e.target.value)}
+                  onBlur={() => setPhoneTouched(true)}
+                  placeholder="+569 XXXXXXXX"
+                  maxLength={12}
+                  className={cn(
+                    "mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none transition-shadow",
+                    phoneError
+                      ? "ring-2 ring-red-400/70 focus:ring-red-400"
+                      : "ring-1 ring-black/5 focus:ring-2 focus:ring-olive/40",
+                  )}
                 />
+                {phoneError && (
+                  <p className="mt-1 text-[11px] text-red-500">
+                    Ingresa un celular válido (+569 seguido de 8 dígitos)
+                  </p>
+                )}
               </div>
               <div>
                 <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Correo electrónico</label>
@@ -245,14 +281,25 @@ export function SuccessModal({
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onBlur={() => setEmailTouched(true)}
                   placeholder="tu@correo.com"
-                  className="mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow focus:ring-2 focus:ring-olive/40"
+                  className={cn(
+                    "mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none transition-shadow",
+                    emailError
+                      ? "ring-2 ring-red-400/70 focus:ring-red-400"
+                      : "ring-1 ring-black/5 focus:ring-2 focus:ring-olive/40",
+                  )}
                 />
+                {emailError && (
+                  <p className="mt-1 text-[11px] text-red-500">
+                    Ingrese un correo válido (ej: nombre@dominio.com)
+                  </p>
+                )}
               </div>
 
               {/* Tipo de entrega */}
               <div>
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">¿Cómo recibes tu pedido?</label>
+                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">¿Cómo recibe su pedido?</label>
                 <div className="mt-2 grid grid-cols-2 gap-3">
                   {([
                     { id: "delivery" as const, label: "Delivery", hint: "Llevamos a tu puerta" },
@@ -279,9 +326,23 @@ export function SuccessModal({
                 </div>
               </div>
 
+              {/* Dirección de delivery */}
+              {fulfillment === "delivery" && (
+                <div>
+                  <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Dirección de entrega</label>
+                  <input
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Calle, número, ciudad…"
+                    className="mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow focus:ring-2 focus:ring-olive/40"
+                  />
+                </div>
+              )}
+
               {/* Método de pago */}
               <div>
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Método de pago al recibir</label>
+                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Método de pago al {fulfillment === "delivery" ? "recibir" : "retirar" }</label>
                 <div className="mt-2 grid grid-cols-2 gap-3">
                   {(["efectivo", "transferencia"] as const).map((m) => {
                     const active = payment === m;
