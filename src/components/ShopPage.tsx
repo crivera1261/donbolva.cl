@@ -276,7 +276,7 @@ export default function ShopPage() {
                           <p>
                             <span className="text-earth/45">Formato · </span>
                             <span className="font-medium text-earth/85">
-                              Docena (12 un.)
+                              Bandeja (30 un.)
                             </span>
                           </p>
                         </div>
