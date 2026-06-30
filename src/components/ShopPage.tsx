@@ -128,8 +128,7 @@ export default function ShopPage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization:
-              "Basic ODkzMjk0ZGMtZjA2OC00YjM0LThkYjAtMzBhMzkzZmFjNTEzOlBDQ1l3T2VidnhwZkVqVTVzTzFnVnlhdTB6UVNaVGJ5QWNQSHJqY1JGcURldTFQQUxoMGliRVBKcGlhNGJiS0Y=",
+            Authorization: `Basic ${import.meta.env.PUBLIC_API_TOKEN}`,
           },
           body: JSON.stringify({ email, body }),
         },
