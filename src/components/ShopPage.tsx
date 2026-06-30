@@ -18,67 +18,13 @@ import { SuccessModal } from "./modal/success";
 import { format, startOfDay } from "date-fns";
 import { es } from "date-fns/locale";
 import { cn } from "../lib/utils";
-
-type Category = "canastas" | "huevos";
-
-type Product = {
-  id: string;
-  name: string;
-  unit: string;
-  price: number;
-  image: string;
-  category: Category;
-  items?: string[];
-  caliber?: string;
-  weight?: string;
-};
+import { PRODUCTS, type Category, type Product } from "../data/shopProducts";
 
 type TimeSlot = "manana" | "tarde";
 
 const CATEGORIES: { id: Category; label: string; icon: typeof Sprout }[] = [
   { id: "canastas", label: "Canastas", icon: ShoppingBag },
   { id: "huevos", label: "Huevos orgánicos", icon: Egg },
-];
-
-const PRODUCTS: Product[] = [
-  {
-    id: "canasta-clasica",
-    name: "Canasta Clásica",
-    unit: "un",
-    price: 18900,
-    image: "/products/canasta.png",
-    category: "canastas",
-    items: ["1 kg de papas", "1 kg de tomates"],
-  },
-  {
-    id: "canasta-Huerta",
-    name: "Canasta Huerta",
-    unit: "un",
-    price: 22500,
-    image: "/products/canasta.png",
-    category: "canastas",
-    items: ["1 kg de papas", "1 atado de hierbas"],
-  },
-  {
-    id: "huevos-extra",
-    name: "Huevos Extra",
-    unit: "docena",
-    price: 3800,
-    image: "/products/huevos.png",
-    category: "huevos",
-    caliber: "Extra Grande (XL)",
-    weight: "73 – 83 g por unidad",
-  },
-  {
-    id: "huevos-super-extra",
-    name: "Huevos Super Extra",
-    unit: "Bandeja 30 uni",
-    price: 9100,
-    image: "/products/huevos.png",
-    category: "huevos",
-    caliber: "Extra Grande (XL)",
-    weight: "73 – 83 g por unidad",
-  },
 ];
 
 function formatCLP(n: number) {
@@ -276,6 +222,7 @@ export default function ShopPage() {
                     className={cn(
                       "group flex flex-col overflow-hidden rounded-2xl bg-white/70 ring-1 ring-black/5 transition-all",
                       qty > 0 && "ring-2 ring-olive/50",
+                      !p.active && "grayscale opacity-50",
                     )}
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-secondary">
@@ -336,7 +283,7 @@ export default function ShopPage() {
                         </div>
                       )}
 
-                      <div className="mt-5 flex items-end justify-between gap-3 border-t border-earth/5 pt-4">
+                      <div className="mt-auto flex items-end justify-between gap-3 border-t border-earth/5 pt-4">
                         <div>
                           <p className="text-[10px] uppercase tracking-widest text-earth/45">
                             Precio
@@ -351,8 +298,9 @@ export default function ShopPage() {
 
                         {qty === 0 ? (
                           <button
-                            onClick={() => inc(p.id)}
-                            className="shrink-0 rounded-full border border-earth/10 px-4 py-2 text-sm font-medium transition-colors hover:border-olive hover:bg-olive hover:text-cream"
+                            onClick={() => p.active && inc(p.id)}
+                            disabled={!p.active}
+                            className="shrink-0 rounded-full border border-earth/10 px-4 py-2 text-sm font-medium transition-colors hover:border-olive hover:bg-olive hover:text-cream disabled:cursor-not-allowed disabled:opacity-50"
                           >
                             Agregar
                           </button>
