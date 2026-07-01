@@ -1,9 +1,11 @@
 ---
 import ShopPage from '@components/ShopPage';
 import Layout from '@layouts/Layout.astro';
+import Analytics from '@vercel/analytics/astro'
 import "@styles/global.css";
 ---
 
 <Layout>
+  <Analytics />
   <ShopPage client:only="react" />
 </Layout>
