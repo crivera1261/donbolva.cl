@@ -13,12 +13,14 @@ import {
 import { Header } from "./common/header";
 import { Hero } from "./common/hero";
 import { Us } from "./common/us";
+import { Benefits } from "./common/benefits";
 import { Welcome } from "./modal/welcome";
 import { SuccessModal } from "./modal/success";
 import { format, startOfDay } from "date-fns";
 import { es } from "date-fns/locale";
 import { cn } from "../lib/utils";
 import { PRODUCTS, type Category, type Product } from "../data/shopProducts";
+import { Promotors } from "./common/Promotors";
 
 type TimeSlot = "manana" | "tarde";
 
@@ -168,9 +170,15 @@ export default function ShopPage() {
       <Hero />
 
       <main id="huerta" className="mx-auto max-w-7xl px-6 pb-40">
+        {/* Beneficios */}
+        <Benefits />
+        
         {/* Cómo funciona */}
         <Us />
 
+        {/* Promotores */}
+        <Promotors />
+        
         {/* Category chips — sticky below the Astro header (h-16 mobile / h-20 sm+) */}
         <div className="sticky top-22 z-30 -mx-6 mb-10 border-b border-earth/10 bg-cream px-6 py-4">
           <div className="flex items-center gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
@@ -211,7 +219,7 @@ export default function ShopPage() {
 
         <div className="flex flex-col gap-10 lg:flex-row">
           {/* Product Grid */}
-          <section className="flex-1">
+          <section id="productos" className="flex-1">
             <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 xl:grid-cols-3">
               {visible.map((p) => {
                 const qty = cart[p.id] ?? 0;
@@ -431,9 +439,12 @@ export default function ShopPage() {
                         onClick={() => setOpenModal(true)}
                         className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-terracota px-4 py-2.5 text-sm font-medium text-white transition-transform active:scale-[0.98]"
                       >
-                        <span>Agende su pedido</span>
+                        <span>Agendar mi pedido</span>
                         <ArrowRight className="size-4" />
                       </button>
+                      <p>
+                        <small>No paga online. Paga cuando retire o reciba su pedido.</small>
+                      </p>
                     </div>
                   </>
                 )}
