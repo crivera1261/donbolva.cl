@@ -25,8 +25,8 @@ import { Promotors } from "./common/Promotors";
 type TimeSlot = "manana" | "tarde";
 
 const CATEGORIES: { id: Category; label: string; icon: typeof Sprout }[] = [
-  { id: "canastas", label: "Canastas", icon: ShoppingBag },
   { id: "huevos", label: "Huevos orgánicos", icon: Egg },
+  { id: "canastas", label: "Canastas", icon: ShoppingBag } 
 ];
 
 function formatCLP(n: number) {
@@ -443,7 +443,7 @@ export default function ShopPage() {
                         <ArrowRight className="size-4" />
                       </button>
                       <p>
-                        <small>No paga online. Paga cuando retire o reciba su pedido.</small>
+                        <small>No paga online. Pague cuando reciba su pedido.</small>
                       </p>
                     </div>
                   </>

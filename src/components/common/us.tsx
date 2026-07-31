@@ -24,7 +24,7 @@ export const Us = () : any => {
               <p className="text-[10px] font-semibold uppercase tracking-widest text-terracota">03 · Reciba</p>
               <h3 className="mt-3 font-serif text-2xl">Pague al recibir</h3>
               <p className="mt-2 text-sm leading-relaxed text-earth/60">
-                Entrega en su puerta o para retiro en tienda. Pague en efectivo o por transferencia cuando recibes la canasta.
+                Entrega en su puerta. Pague en efectivo o por transferencia cuando recibes la canasta.
               </p>
             </div>
           </div>

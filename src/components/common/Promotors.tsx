@@ -5,20 +5,20 @@ interface Promoter {
 }
 
 const promoters: Promoter[] = [
-  {
+   {
     id: 1,
     name: 'Erica González',
-    testimonial: 'Me encanta poder agendar mi horario de retiro.'
+    testimonial: 'Poder agendar mi entrega con anticipación ha sido un cambio enorme. Como trabajo turnos rotativos, antes perdía muchas compras porque no podía estar en casa. Ahora elijo el horario que me acomoda y llega todo puntual.'
   },
   {
     id: 2,
     name: 'Pedro Díaz',
-    testimonial: 'Paso después del trabajo y ya está listo.'
+    testimonial: 'Coordinan todo por WhatsApp y en 24 horas tengo mi pedido en la puerta. La calidad de las verduras es increíble, mucho mejor que lo que encontraba en el supermercado. Ya no pierdo tiempo haciendo filas.'
   },
   {
     id: 3,
     name: 'Jorge López',
-    testimonial: 'Desde que agendo mi compra, ahorro muchísimo tiempo.'
+    testimonial: 'Agendar canastas semanales me cambió la vida. Los sábados ya no tengo que levantarme temprano para ir a la feria. Ese tiempo lo uso para estar con mis hijos y comer sano sin estrés.'
   }
 ];
 
@@ -32,10 +32,10 @@ export const Promotors = () : any => {
       <div className="grid gap-6 md:grid-cols-3">
         {promoters.map((promoter) => (
           <div key={promoter.id} className="bg-white rounded-lg border border-earth/10 shadow-sm p-8">
-            <p className="text-earth/70 text-sm leading-relaxed mb-6 italic">
+            <p className="text-lg text-earth/70  leading-relaxed mb-6 italic">
               "{promoter.testimonial}"
             </p>
-            <p className="font-serif text-lg font-bold text-earth">
+            <p className="font-serif font-bold text-sm text-earth">
               {promoter.name}
             </p>
           </div>
