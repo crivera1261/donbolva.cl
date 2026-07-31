@@ -95,6 +95,11 @@ export function SuccessModal({
     setPhone(PHONE_PREFIX + digits);
   };
 
+  // 🔥 Forzar fulfillment a "delivery" siempre
+  if (fulfillment !== "delivery") {
+    setFulfillment("delivery");
+  }
+
   if (!openModal) return null;
 
   return (
@@ -116,10 +121,7 @@ export function SuccessModal({
             <h2 className="mt-4 font-serif text-3xl font-medium text-earth">Pedido agendado</h2>
             <p className="mx-auto mt-3 max-w-[36ch] text-sm leading-relaxed text-earth/70">
               Gracias <strong>{name}</strong>.{" "}
-              <strong>
-                {fulfillment === "delivery" ? "Te entregaremos" : "Lo dejaremos listo para retiro"}
-              </strong>{" "}
-              el{" "}
+              <strong>Te entregaremos</strong> el{" "}
               <strong>
                 {deliveryDate && format(deliveryDate, "EEEE d 'de' MMMM", { locale: es })}
               </strong>{" "}
@@ -297,52 +299,23 @@ export function SuccessModal({
                 )}
               </div>
 
-              {/* Tipo de entrega */}
-              <div>
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">¿Cómo recibe su pedido?</label>
-                <div className="mt-2 grid grid-cols-2 gap-3">
-                  {([
-                    { id: "delivery" as const, label: "Delivery", hint: "Llevamos a tu puerta" },
-                    { id: "retiro" as const, label: "Retiro en tienda", hint: "Pasas a buscarlo" },
-                  ]).map((opt) => {
-                    const active = fulfillment === opt.id;
-                    return (
-                      <button
-                        key={opt.id}
-                        type="button"
-                        onClick={() => setFulfillment(opt.id)}
-                        className={cn(
-                          "flex flex-col items-start rounded-lg bg-white p-3 text-left transition-all",
-                          active
-                            ? "ring-2 ring-olive ring-offset-2 ring-offset-cream"
-                            : "ring-1 ring-black/5 hover:ring-earth/20",
-                        )}
-                      >
-                        <span className="text-xs font-medium text-earth">{opt.label}</span>
-                        <span className="mt-0.5 text-[10px] text-earth/50">{opt.hint}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+              {/* 🔥 ELIMINADO: Selector de "Retiro en tienda" / "Delivery" */}
 
-              {/* Dirección de delivery */}
-              {fulfillment === "delivery" && (
-                <div>
-                  <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Dirección de entrega</label>
-                  <input
-                    type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Calle, número, ciudad…"
-                    className="mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow focus:ring-2 focus:ring-olive/40"
-                  />
-                </div>
-              )}
+              {/* Dirección de delivery - SIEMPRE VISIBLE */}
+              <div>
+                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Dirección de entrega</label>
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Calle, número, ciudad…"
+                  className="mt-1.5 w-full rounded-lg border-none bg-earth/5 px-4 py-3 text-sm outline-none ring-1 ring-black/5 transition-shadow focus:ring-2 focus:ring-olive/40"
+                />
+              </div>
 
               {/* Método de pago */}
               <div>
-                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Método de pago al {fulfillment === "delivery" ? "recibir" : "retirar" }</label>
+                <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Método de pago al recibir</label>
                 <div className="mt-2 grid grid-cols-2 gap-3">
                   {(["efectivo", "transferencia"] as const).map((m) => {
                     const active = payment === m;

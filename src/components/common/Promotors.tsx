@@ -8,7 +8,7 @@ const promoters: Promoter[] = [
   {
     id: 1,
     name: 'Erica González',
-    testimonial: 'Me encanta poder agendar mi horario de retiro.'
+    testimonial: 'Me encanta poder agendar mi horario de mi entrega.'
   },
   {
     id: 2,
@@ -32,10 +32,10 @@ export const Promotors = () : any => {
       <div className="grid gap-6 md:grid-cols-3">
         {promoters.map((promoter) => (
           <div key={promoter.id} className="bg-white rounded-lg border border-earth/10 shadow-sm p-8">
-            <p className="text-earth/70 text-sm leading-relaxed mb-6 italic">
+            <p className="text-lg text-earth/70  leading-relaxed mb-6 italic">
               "{promoter.testimonial}"
             </p>
-            <p className="font-serif text-lg font-bold text-earth">
+            <p className="font-serif font-bold text-sm text-earth">
               {promoter.name}
             </p>
           </div>

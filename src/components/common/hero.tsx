@@ -1,7 +1,7 @@
 export const Hero = () : any => {
   return (
     <header className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-        <div className="max-w-3xl">
+        <div className="max-w-7xl">
           <span className="mb-6 inline-block text-2xl font-semibold uppercase tracking-[0.25em] text-terracota">
             Pase por acá nomá Caserita/o
           </span>

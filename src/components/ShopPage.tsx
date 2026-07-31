@@ -25,8 +25,8 @@ import { Promotors } from "./common/Promotors";
 type TimeSlot = "manana" | "tarde";
 
 const CATEGORIES: { id: Category; label: string; icon: typeof Sprout }[] = [
-  { id: "canastas", label: "Canastas", icon: ShoppingBag },
   { id: "huevos", label: "Huevos orgánicos", icon: Egg },
+  { id: "canastas", label: "Canastas", icon: ShoppingBag } 
 ];
 
 function formatCLP(n: number) {
