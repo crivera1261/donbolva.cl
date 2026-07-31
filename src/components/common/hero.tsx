@@ -9,7 +9,7 @@ export const Hero = () : any => {
             Organice la compra de la semana en menos de 3 minutos.
           </h2>
           <p className="mt-6 max-w-[56ch] text-pretty text-lg leading-relaxed text-earth/70">
-            Todo listo cuando usted lo necesite caserito/a.
+            Todo listo cuando usted lo necesite.
           </p>
         </div>
       </header>
