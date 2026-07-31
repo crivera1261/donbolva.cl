@@ -175,9 +175,6 @@ export default function ShopPage() {
         
         {/* Cómo funciona */}
         <Us />
-
-        {/* Promotores */}
-        <Promotors />
         
         {/* Category chips — sticky below the Astro header (h-16 mobile / h-20 sm+) */}
         <div className="sticky top-22 z-30 -mx-6 mb-10 border-b border-earth/10 bg-cream px-6 py-4">
@@ -452,6 +449,9 @@ export default function ShopPage() {
             </div>
           </aside>
         </div>
+
+        {/* Promotores */}
+        <Promotors />
       </main>
 
       {/* Floating basket — mobile only */}
