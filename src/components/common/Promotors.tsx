@@ -5,20 +5,20 @@ interface Promoter {
 }
 
 const promoters: Promoter[] = [
-  {
+   {
     id: 1,
     name: 'Erica González',
-    testimonial: 'Me encanta poder agendar mi horario de mi entrega.'
+    testimonial: 'Poder agendar mi entrega con anticipación ha sido un cambio enorme. Como trabajo turnos rotativos, antes perdía muchas compras porque no podía estar en casa. Ahora elijo el horario que me acomoda y llega todo puntual.'
   },
   {
     id: 2,
     name: 'Pedro Díaz',
-    testimonial: 'Paso después del trabajo y ya está listo.'
+    testimonial: 'Coordinan todo por WhatsApp y en 24 horas tengo mi pedido en la puerta. La calidad de las verduras es increíble, mucho mejor que lo que encontraba en el supermercado. Ya no pierdo tiempo haciendo filas.'
   },
   {
     id: 3,
     name: 'Jorge López',
-    testimonial: 'Desde que agendo mi compra, ahorro muchísimo tiempo.'
+    testimonial: 'Agendar canastas semanales me cambió la vida. Los sábados ya no tengo que levantarme temprano para ir a la feria. Ese tiempo lo uso para estar con mis hijos y comer sano sin estrés.'
   }
 ];
 

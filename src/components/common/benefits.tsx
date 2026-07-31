@@ -18,7 +18,7 @@ export const Benefits = (): any => {
         <p className="mt-4 text-sm">
           <span>
             <small>
-              No paga online. Paga cuando retire o reciba su pedido.
+              No paga online. Paga cuando reciba su pedido.
             </small>
           </span>
         </p>

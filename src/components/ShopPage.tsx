@@ -443,7 +443,7 @@ export default function ShopPage() {
                         <ArrowRight className="size-4" />
                       </button>
                       <p>
-                        <small>No paga online. Paga cuando retire o reciba su pedido.</small>
+                        <small>No paga online. Pague cuando reciba su pedido.</small>
                       </p>
                     </div>
                   </>
