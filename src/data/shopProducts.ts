@@ -184,7 +184,7 @@ export const PRODUCTS: Product[] = [
     price: 6800,
     image: "/products/huevos.png",
     category: "huevos",
-    active: true,
+    active: false,
     caliber: "Segunda",
     weight: "40 – 46 g por unidad",
   },
