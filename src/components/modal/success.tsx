@@ -121,14 +121,14 @@ export function SuccessModal({
             <h2 className="mt-4 font-serif text-3xl font-medium text-earth">Pedido agendado</h2>
             <p className="mx-auto mt-3 max-w-[36ch] text-sm leading-relaxed text-earth/70">
               Gracias <strong>{name}</strong>.{" "}
-              <strong>Te entregaremos</strong> el{" "}
+              <strong>Le entregaremos</strong> el{" "}
               <strong>
                 {deliveryDate && format(deliveryDate, "EEEE d 'de' MMMM", { locale: es })}
               </strong>{" "}
               en horario{" "}
               <strong>{timeSlot === "manana" ? "de mañana (9–13h)" : "de tarde (15–19h)"}</strong>.
-              Te contactaremos al <strong>{phone}</strong> para confirmar.
-              Pagas <strong>{payment === "efectivo" ? "en efectivo" : "por transferencia"}</strong> al recibir.
+              Le contactaremos al <strong>{phone}</strong> para confirmar.
+              Paga <strong>{payment === "efectivo" ? "en efectivo" : "por transferencia"}</strong> al recibir.
             </p>
             <button
               onClick={resetOrder}
