@@ -34,7 +34,7 @@ function formatCLP(n: number) {
 }
 
 export default function ShopPage() {
-  const [activeCat, setActiveCat] = useState<Category>("canastas");
+  const [activeCat, setActiveCat] = useState<Category>("huevos");
   const [cart, setCart] = useState<Record<string, number>>({});
   const [openModal, setOpenModal] = useState(false);
   const [name, setName] = useState("");
