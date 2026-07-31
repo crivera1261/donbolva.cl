@@ -13,7 +13,7 @@ export const Benefits = (): any => {
           onClick={handleAgendarClick}
           className="flex items-center cursor-pointer gap-2 bg-[#39b549] px-8 py-4 text-lg font-medium text-cream ring-1 transition-transform hover:-translate-y-px disabled:opacity-40"
         >
-          <span className="hidden sm:inline">Agendar su pedido</span>
+          <span className="items-center align-center sm:inline">Agendar su pedido</span>
         </button>
         {/* <p className="mt-4 text-sm">
           <span>

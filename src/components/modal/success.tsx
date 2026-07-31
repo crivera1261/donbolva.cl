@@ -258,6 +258,7 @@ export function SuccessModal({
                 <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Teléfono de contacto</label>
                 <input
                   type="tel"
+                  inputMode="numeric"
                   value={phone}
                   onFocus={() => { if (!phone) setPhone(PHONE_PREFIX); }}
                   onChange={(e) => handlePhoneChange(e.target.value)}
@@ -281,6 +282,7 @@ export function SuccessModal({
                 <label className="text-[10px] font-semibold uppercase tracking-wider text-earth/50">Correo electrónico</label>
                 <input
                   type="email"
+                  inputMode="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={() => setEmailTouched(true)}
