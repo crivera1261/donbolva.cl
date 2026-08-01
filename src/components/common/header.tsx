@@ -32,10 +32,10 @@ export function Header({ itemCount = 0, onOpenCart }: HeaderProps) {
         </a>
         <div className="flex items-center gap-1 sm:gap-3">
           <div className="flex items-center">
-            <a href="https://www.instagram.com/donbolva_distribuidora?igsh=Z3hqMzc5bXZxNjA1" target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
+            <a href="https://www.instagram.com/donbolva?igsh=Z3hqMzc5bXZxNjA1" target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
               <InstagramIcon className="size-6" />
             </a>
-            <a href="https://wa.me/56974587354?text=Hola!%20me%20puedes%20entregar%20más%20información%20sobre%20la%20venta%20de%20huevos." target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
+            <a href="https://wa.me/56927505978?text=Hola!%20me%20puedes%20entregar%20más%20información%20sobre%20la%20venta%20de%20huevos." target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
               <WhatsappIcon className="size-6" />
             </a>
             {/* <a href="https://maps.app.goo.gl/D2eX6zAxU5TttWGX7" target="_blank" className="flex size-9 items-center justify-center rounded-full text-earth/50 transition-colors hover:bg-earth/5 hover:text-earth">
