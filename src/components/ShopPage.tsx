@@ -121,7 +121,7 @@ export default function ShopPage() {
     cartItems.forEach((i) => {
       body += `${i.name} × ${i.qty} ${i.unit} → ${formatCLP(i.subtotal)}\n`;
     });
-    body += `\nTotal: ${formatCLP(total)}\n(Envío gratuito)`;
+    body += `\nTotal: ${formatCLP(total)}\n(Consulta por tu sector)`;
 
     try {
       const response = await fetch(
