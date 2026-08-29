@@ -33,6 +33,7 @@ type SuccessModalProps = {
   canConfirm: boolean;
   isSubmitting: boolean;
   submitError: string;
+  shippingMessage: string;
   setOpenModal: (v: boolean) => void;
   setName: (v: string) => void;
   setPhone: (v: string) => void;
@@ -67,6 +68,7 @@ export function SuccessModal({
   canConfirm,
   isSubmitting,
   submitError,
+  shippingMessage,
   setOpenModal,
   setName,
   setPhone,
@@ -174,7 +176,9 @@ export function SuccessModal({
               ))}
               <div className="flex justify-between border-t border-earth/5 py-2 text-sm">
                 <span className="text-earth/60">Costo de envío</span>
-                <span className="text-olive">Gratuito</span>
+                <span className={shippingMessage === "Envío gratuito" ? "font-medium text-olive" : "text-olive"}>
+                  {shippingMessage}
+                </span>
               </div>
               <div className="mt-2 flex justify-between border-t border-earth/10 pt-4 font-serif text-lg">
                 <span>Total a pagar</span>
