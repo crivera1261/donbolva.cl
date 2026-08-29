@@ -78,6 +78,18 @@ export default function ShopPage() {
     return map;
   }, [cart]);
 
+  const shippingInfo = useMemo(() => {
+    const huevosCount = countByCat["huevos"] ?? 0;
+    const canastasCount = countByCat["canastas"] ?? 0;
+
+    if (huevosCount >= 2 || canastasCount >= 1) {
+      return { isFree: true, message: "Envío gratuito" };
+    } else if (huevosCount === 1) {
+      return { isFree: false, message: "Consulta por tu sector" };
+    }
+    return { isFree: false, message: "Consulta por tu sector" };
+  }, [countByCat]);
+
   const inc = (id: string) =>
     setCart((c) => ({ ...c, [id]: (c[id] ?? 0) + 1 }));
   const dec = (id: string) =>
@@ -121,7 +133,8 @@ export default function ShopPage() {
     cartItems.forEach((i) => {
       body += `${i.name} × ${i.qty} ${i.unit} → ${formatCLP(i.subtotal)}\n`;
     });
-    body += `\nTotal: ${formatCLP(total)}\n(Consulta por tu sector)`;
+    body += `\nEnvío: ${shippingInfo.message}`;
+    body += `\nTotal: ${formatCLP(total)}`;
 
     try {
       const response = await fetch(
@@ -495,6 +508,7 @@ export default function ShopPage() {
         canConfirm={canConfirm}
         isSubmitting={isSubmitting}
         submitError={submitError}
+        shippingMessage={shippingInfo.message}
         setOpenModal={setOpenModal}
         setName={setName}
         setPhone={setPhone}
